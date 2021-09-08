@@ -14,15 +14,14 @@ class CreateAkunModelsTable extends Migration
     public function up()
     {
         Schema::create('akun_models', function (Blueprint $table) {
-            $table->string('nama_ak');
-            $table->string('alamat_ak');
-            $table->string('tptlahir_ak');
-            $table->date('tgllahir_ak');
-
-            $table->string('jabatan_ak')->default('Kasir');
-            $table->enum('jk_ak', ['Laki-Laki', 'Perempuan']);
+            $table->id()->unique();
             $table->string('username')->unique();
             $table->string('password');
+            $table->string('nama_akun');
+            $table->integer('noHp_akun');
+            $table->string('alamat_akun');
+            $table->integer('tipe_akun');
+
             $table->timestamps();
         });
     }

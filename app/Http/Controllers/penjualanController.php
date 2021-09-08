@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\penjualanModel;
+use Carbon\Carbon;
 
 class penjualanController extends Controller
 {
@@ -13,7 +14,8 @@ class penjualanController extends Controller
             "title" => "Kelola Data Penjualan",
             "name" => "Gredo Tarigan",
             "judul_konten" => "Data Penjualan",
-            "data_penjualan" => penjualanModel::all()
+            "data_penjualan" => penjualanModel::all(),
+            "carbon_today" => Carbon::today()->isoFormat('dddd, D MMMM Y' )
         ]);
     }
 

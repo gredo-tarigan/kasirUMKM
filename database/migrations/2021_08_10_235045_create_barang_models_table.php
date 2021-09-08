@@ -14,10 +14,13 @@ class CreateBarangModelsTable extends Migration
     public function up()
     {
         Schema::create('barang_models', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unique();
             //$table->string('kode_barang')->unique();
-            $table->string('slug')->unique(); // nantinya slug ini ga di database tp jadi otomatis tergenerate
             $table->string('nama_barang');
+            $table->string('supplier_barang')->nullable();
+            $table->string('ket_barang')->nullable();
+            $table->string('kategori_barang')->nullable();
+            $table->string('kategorijual_barang')->nullable();
             $table->integer('hargamasuk_barang');
             $table->integer('hargajual_barang');
             $table->decimal('stok_barang');

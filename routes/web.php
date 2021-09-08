@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\akunController;
 use App\Http\Controllers\barangController;
+use App\Http\Controllers\kasirController;
 use App\Http\Controllers\pengeluaranController;
 use App\Http\Controllers\penjualanController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,24 +43,38 @@ Route::get('/profil', function () {
     ]);
 });
 
-Route::get('/cashier', function () {
-    return view('kasir.kasir',[
-        "title" => "Kasir",
-        "name" => "Tarigan Jack",
-        "judul_konten" => "Tarigan Jack"
-
-    ]);
-});
+Route::get('cashier', [kasirController::class, 'kasir']);
 
 Route::get('account', [akunController::class, 'index']);
-Route::get('account/edit/{username}', [akunController::class, 'editDataAkun']);
+Route::post('account', [akunController::class, 'store']);
+Route::get('/get-dataAkun', [akunController::class, 'getAkunList'])->name('get.akun.list');
+Route::get('edit-dataAkun/{id}', [akunController::class, 'edit']);
+Route::put('update-dataAkun/{id}', [akunController::class, 'update']);
+Route::delete('delete-dataAkun/{id}', [akunController::class, 'destroy']);
 
-Route::get('goods', [barangController::class, 'barang']);
+ 
+
+
+Route::get('goods', [barangController::class, 'barang',]);
+Route::post('goods', [barangController::class, 'store',]);
+//Route::get('fetch-dataBarang', [barangController::class, 'fetchDataBarang']);
+Route::get('edit-dataBarang/{id}', [barangController::class, 'edit']);
+Route::put('update-dataBarang/{id}', [barangController::class, 'update']);
+Route::delete('delete-dataBarang/{id}', [barangController::class, 'destroy']);
+
+Route::get('/get-dataBarang', [barangController::class, 'getCountriesList'])->name('get.countries.list');
+
+
 Route::get('goods/edit/{barang_slug:slug}', [barangController::class, 'editDataBarang']);
+
 
 Route::get('/sales', [penjualanController::class, 'penjualan']);
 Route::get('sales/edit/{penjualan_slug:slug}', [penjualanController::class, 'editDataPenjualan']);
 
 
 Route::get('/expenses', [pengeluaranController::class, 'pengeluaran']);
-Route::get('expenses/edit/{pengeluaran_slug:slug}', [pengeluaranController::class, 'editDataPengeluaran']);
+Route::get('/get-dataPengeluaran', [pengeluaranController::class, 'getPengeluaranList'])->name('get.pengeluaran.list');
+Route::delete('delete-dataPengeluaran/{id}', [pengeluaranController::class, 'destroy']);
+Route::post('expenses', [pengeluaranController::class, 'store',]);
+Route::get('edit-dataPengeluaran/{id}', [pengeluaranController::class, 'edit']);
+Route::put('update-dataPengeluaran/{id}', [pengeluaranController::class, 'update']);

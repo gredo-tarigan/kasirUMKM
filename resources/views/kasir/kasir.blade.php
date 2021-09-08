@@ -9,22 +9,27 @@
                 <form>
                     <div class="row">
                         <div class="col-lg">
-                            <div class="mb-3"><label class="form-label" for="city"><strong>Nama
+                            <div class="mb"><label class="form-label" for="city"><strong>Nama
                                         Pembeli</strong></label><input class="form-control" placeholder="Boleh Kosong"
                                     type="text" id="city" name="city"></div>
                         </div>
                         <div class="col-lg">
-                            <div class="mb-3"><label class="form-label" for="country"><strong>
+                            <div class="mb"><label class="form-label" for="countr]y"><strong>
                                         No. Nota</strong></label><input class="form-control" type="text" id="country"
                                     placeholder="XXX" name="country" disabled></div>
                         </div>
                         <div class="col-lg-3">
-                            <div class="mt-3" style="text-align: center;">
-                                <div><i class="fa fa-calendar fa-2x"></i></div>
+                            <div class="mb" style="text-align: center;">
+                                <div><i class="fa fa-calendar fa-2x mb-1"></i></div>
                                 <label class="form-label" for="address">
-                                    <p> 22 Agustus 2021</p>
+                                    <p>{{ $carbon_today->isoFormat('dddd') }} <br> {{ $carbon_today->isoFormat('D MMMM Y' ) }}</p>
                                 </label>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-check form-switch toggle-text switch2">
+                        <input class="form-check-input" type="checkbox" id="Mode_Kustom">
+                        <div><i class="fa fa-pencil-square-o fa-sm"></i> / <i class="fa fa-trash-o fa-sm"></i>
                         </div>
                     </div>
                     <div class="card mb-3" style="height: 20rem; width: 100%">
@@ -35,9 +40,10 @@
                                     <tr class="text-center">
                                         <th>#</th>
                                         <th>Nama Barang</th>
-                                        <th>Berat</th>
+                                        <th>Qty</th>
                                         <th>Nom. Pembelian</th>
-                                        <th><i class="fa fa-pencil-square-o fa-sm"></i> / <i class="fa fa-trash-o fa-sm">
+                                        <th class="hideme3" style="display:none;"><i class="fa fa-pencil-square-o fa-sm"></i> / <i
+                                                class="fa fa-trash-o fa-sm">
                                         </th>
                                     </tr>
                                 </thead>
@@ -47,7 +53,7 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td style="white-space: nowrap;" class="text-center">
+                                        <td style="white-space: nowrap; display:none;" class="text-center hideme3">
                                             <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button"
                                                 href=""><i class="fa fa-pencil-square-o fa-sm text-white-50"></i></a>
                                             <a class="btn btn-danger btn-sm d-none d-sm-inline-block" role="button"
@@ -86,91 +92,96 @@
                     <div class="mb-3"><label class="form-label" for="address"><strong>Nama Barang</strong></label><input
                             class="form-control" placeholder="" id="exampleFormControlTextarea1"></div>
 
+                    <div id="content"> </div>
 
+                    <div class="form-check form-switch toggle-text switch">
+                        <input class="form-check-input" type="checkbox" id="">
 
-                    <div class="form-check form-switch toggle-text"><input class="form-check-input" type="checkbox"
-                            id="formCheck-1"><label class="form-check-label" for="formCheck-1">
-                            <p>Mode Kustom Harga</strong></p>
-                            <span>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="mb-3"><label class="form-label" for="address"><strong>Harga</strong></label>
-                                        <input class="form-control" type="text" placeholder="50000"
-                                            aria-label="Disabled input example" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-lg">
-                                    <div class="mb-2"><label class="form-label" for="address"><strong>Nominal
-                                                Pembelian</strong></label>
-                                        <input class="form-control" type="text" id="address" placeholder="" name="address">
-                                    </div>
-                                    <div class="card">
-                                        <div class="btn-toolbar mb-1 mt-1" style=" display: flex;
-                                                            justify-content: center;
-                                                            align-items: center;">
-                                            <button type="button" id="btnSubmit" class="btn btn-info btn-sm"
-                                                style="width: 47%; margin: 2.5px; color: white;">Rp5000</button>
-                                            <button type="button" id="btnCancel" class="btn btn-info btn-sm"
-                                                style="width: 47%;  margin: 2.5px; color: white;">Rp7500</button>
-                                            <button type="button" id="btnSubmit" class="btn btn-success btn-sm"
-                                                style="width: 47%;  margin: 2.5px; color: white;">Rp10.000</button>
-                                            <button type="button" id="btnCancel" class="btn btn-success btn-sm"
-                                                style="width: 47%;  margin: 2.5px; color: white;"><i
-                                                    class="fa fa-pencil-square-o fa-sm"></i></button>
-                                        </div>
-                                    </div>
+                        <p>Harga Grosir</strong></p>
+                    </div>
+                    <div class="row hideme">
+                        <div class="col-lg-4">
+                            <div class="mb-3"><label class="form-label" for="address"><strong>Harga</strong></label>
+                                <input class="form-control" type="text" placeholder="50000"
+                                    aria-label="Disabled input example" disabled>
+                            </div>
+                        </div>
+                        <div class="col-lg">
+                            <div class="mb-2"><label class="form-label" for="address"><strong>Nominal
+                                        Pembelian</strong></label>
+                                <input class="form-control" type="text" id="address" placeholder="" name="address">
+                            </div>
+                            <div class="card">
+                                <div class="btn-toolbar mb-1 mt-1" style=" display: flex;
+                                                                            justify-content: center;
+                                                                            align-items: center;">
+                                    <button type="button" id="btnSubmit" class="btn btn-info btn-sm"
+                                        style="width: 47%; margin: 2.5px; color: white;">Rp5000</button>
+                                    <button type="button" id="btnCancel" class="btn btn-info btn-sm"
+                                        style="width: 47%;  margin: 2.5px; color: white;">Rp7500</button>
+                                    <button type="button" id="btnSubmit" class="btn btn-success btn-sm"
+                                        style="width: 47%;  margin: 2.5px; color: white;">Rp10.000</button>
+                                    <button type="button" id="btnCancel" class="btn btn-success btn-sm"
+                                        style="width: 47%;  margin: 2.5px; color: white;"><i
+                                            class="fa fa-pencil-square-o fa-sm"></i></button>
                                 </div>
                             </div>
-                        </span>
-                            <span class="hidden">
-                                <div class="row ">
-                                    <div class="col-lg-4">
-                                        <div class="mb-3"><label class="form-label" for="address"><strong>Test</strong></label>
-                                            <input class="form-control" type="text" placeholder="50000"
-                                                aria-label="Disabled input example" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg">
-                                        <div class="mb-2"><label class="form-label" for="address"><strong>Nominal
-                                                    Pembelian</strong></label>
-                                            <input class="form-control" type="text" id="address" placeholder="" name="address">
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </span>
-                    </div>
-
-
-                    
-
-                    
-                    <div class="d-flex justify-content-end mt-5 mb-3"><button
+                        </div>
+                        <div class="d-flex justify-content-end mt-5 mb-3"><button
                             class="btn btn-primary btn-sm d-none d-sm-inline-block" type="submit"><i
                                 class="fa fa-cart-plus fa-sm text-white-50"></i>&nbsp;&nbsp;Tambahkan</button></div>
+                    </div>
+                    <div class="row hideme2" style="display:none;">
+                        <div class="col-lg-4">
+                            <div class="mb-3"><label class="form-label" for="address"><strong>Harga</strong></label>
+                                <input class="form-control" type="text" placeholder="50000"
+                                    aria-label="Disabled input example">
+                            </div>
+                        </div>
+                        <div class="col-lg">
+                            <div class="mb-2"><label class="form-label" for="address"><strong>Nominal
+                                        Pembelian</strong></label>
+                                <input class="form-control" type="text" id="address" placeholder="" name="address">
+                            </div>
+
+                        </div>
+                        <div class="d-flex justify-content-end mt-5 mb-3"><button
+                            class="btn btn-primary btn-sm d-none d-sm-inline-block" type="submit"><i
+                                class="fa fa-cart-plus fa-sm text-white-50"></i>&nbsp;&nbsp;Tambahkan</button></div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-    {{-- <div class="form-check form-switch toggle-text"><input class="form-check-input" type="checkbox"
-        id="formCheck-1"><a class="toggle-text2" data-toggle="collapse" href="#collapseExample">
-            {{-- See <span>more</span><span class="hidden2">less</span>...
-        </a> --}}
-{{-- </div> --}}
-{{-- <a class="toggle-text1" data-toggle="collapse" href="#collapseExample">
-    See <span>more</span><span class="hidden1">less</span>...
-</a> --}} 
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script>
-        $('.hidden').removeClass('hidden').hide();
-        $('.toggle-text').click(function() 
-        {
-            $(this).find('span').each(function() {
-                $(this).toggle();
+        $(document).ready(function() {
+            $(".switch input").on("change", function(e) {
+                const isOn = e.currentTarget.checked;
+                if (isOn) {
+                    $(".hideme").hide();
+                    $(".hideme2").show();
+                } else {
+                    $(".hideme").show();
+                    $(".hideme2").hide();
+                }
             });
         });
     </script>
 
+    <script>
+        $(document).ready(function() {
+            $(".switch2 input").on("change", function(e) {
+                const isOn = e.currentTarget.checked;
+
+                if (isOn) {
+                    $(".hideme3").show();
+                } else {
+                    $(".hideme3").hide();
+                }
+            });
+        });
+    </script>
 @endsection
