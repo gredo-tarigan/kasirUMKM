@@ -32,21 +32,21 @@
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'nama_pengeluaran',
-                        name: 'nama_pengeluaran'
+                        data: 'nama',
+                        name: 'nama'
                     },
                     {
-                        data: 'nominal_pengeluaran',
-                        name: 'nominal_pengeluaran'
+                        data: 'nominal',
+                        name: 'nominal'
                     },
                     
                     {
-                        data: 'kategori_pengeluaran',
-                        name: 'kategori_pengeluaran'
+                        data: 'kategori_pengeluaran_id',
+                        name: 'kategori_pengeluaran_id'
                     },
                     {
-                        data: 'ket_pengeluaran',
-                        name: 'ket_pengeluaran'
+                        data: 'keterangan',
+                        name: 'keterangan'
                     },
                     {
                         data: 'actions',

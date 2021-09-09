@@ -11,6 +11,8 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 @extends('kd_barang.scriptModalBarang')
 @extends('kd_pengeluaran.scriptModalPengeluaran')
 @extends('kd_akun.scriptModalAkun')
+@extends('kasir.script')
+
 
 <div class="modal fade" id="modalTambah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">

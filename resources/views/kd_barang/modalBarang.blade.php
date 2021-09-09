@@ -124,14 +124,14 @@
                     <div class="col-lg">
                         <div class="mb-3"><label class="form-label" for="city"><strong>Kategori
                                     Barang</strong></label>
-                            <input class="form-control" placeholder="" type="text" id="add_kategoriBarang"
-                                name="add_kategoriBarang">
+                            <input class="form-control" placeholder="" type="" id="add_kategori_barang"
+                                name="add_kategori_barang">
                         </div>
                     </div>
                     <div class="col-lg">
                         <div class="mb-3"><label class="form-label" for="city"><strong>Penjualan
                                     Barang</strong></label>
-                            <select class="custom-select" id="add_kategoriPenjualan">
+                            <select class="custom-select" id="add_kategori_penjualan">
                                 <option selected>Choose...</option>
                                 <option value="1">Eceran</option>
                                 <option value="2">Per Pieces</option>

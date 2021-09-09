@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class kasirModel extends Model
+use Carbon\Carbon;
+
+class Akun extends Model
 {
     use HasFactory;
+
 }

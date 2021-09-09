@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\pengeluaranModel;
+use App\Models\Pengeluaran;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -16,7 +16,7 @@ class pengeluaranController extends Controller
             "title" => "Kelola Data Pengeluaran",
             "name" => "Tarigan Jack",
             "judul_konten" => "Data Pengeluaran",
-            "data_pengeluaran" => pengeluaranModel::all(),
+            "data_pengeluaran" => Pengeluaran::all(),
             "carbon_today" => Carbon::today()->isoFormat('dddd, D MMM Y')
         ]);
     }
@@ -25,7 +25,7 @@ class pengeluaranController extends Controller
     // GET ALL PENGELUARAN
     public function getPengeluaranList()
     {
-        $countries = pengeluaranModel::all();
+        $countries = Pengeluaran::all();
         return DataTables::of($countries)
             ->addIndexColumn()
             ->addColumn('actions', function ($row) {
@@ -43,7 +43,7 @@ class pengeluaranController extends Controller
     public function destroy($id)
     {
         //
-        $deleteDataPengeluaran = pengeluaranModel::find($id);
+        $deleteDataPengeluaran = Pengeluaran::find($id);
         $deleteDataPengeluaran->delete();
         return response()->json([
             'status' => 200,
@@ -58,7 +58,7 @@ class pengeluaranController extends Controller
             'add_np' => 'required',
             'add_nomp' => 'required|numeric|min:3',
             'add_kp' => 'required',
-            'add_katp' => 'required',
+            'add_katp' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -67,11 +67,11 @@ class pengeluaranController extends Controller
                 'errors' => $validator->messages(),
             ]);
         } else {
-            $addDataPengeluaran = new pengeluaranModel; //nama model migrasi database
-            $addDataPengeluaran->nama_pengeluaran = $request->input('add_np');
-            $addDataPengeluaran->nominal_pengeluaran = $request->input('add_nomp');
-            $addDataPengeluaran->ket_pengeluaran = $request->input('add_kp');
-            $addDataPengeluaran->kategori_pengeluaran = $request->input('add_katp');
+            $addDataPengeluaran = new Pengeluaran(); //nama model migrasi database
+            $addDataPengeluaran->nama = $request->input('add_np');
+            $addDataPengeluaran->nominal = $request->input('add_nomp');
+            $addDataPengeluaran->keterangan = $request->input('add_kp');
+            $addDataPengeluaran->kategori_pengeluaran_id = $request->input('add_katp');
             /* $addDataBarang->save();
             return response()->json([
                 'status' => 200,
@@ -96,7 +96,7 @@ class pengeluaranController extends Controller
     public function edit($id)
     {
         //
-        $editDataPengeluaran = pengeluaranModel::find($id);
+        $editDataPengeluaran = Pengeluaran::find($id);
         if ($editDataPengeluaran) {
             return response()->json([
                 'status' => 200,
@@ -117,7 +117,7 @@ class pengeluaranController extends Controller
             'nama_pengeluaran' => 'required',
             'nominal_pengeluaran' => 'required|numeric|min:3',
             'ket_pengeluaran' => 'required',
-            'kategori_pengeluaran' => 'required',
+            'kategori_pengeluaran' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -126,12 +126,12 @@ class pengeluaranController extends Controller
                 'errors' => $validator->messages(),
             ]);
         } else {
-            $updateDataPengeluaran = pengeluaranModel::find($id); //nama model migrasi database
+            $updateDataPengeluaran = Pengeluaran::find($id); //nama model migrasi database
             if ($updateDataPengeluaran) {
-                $updateDataPengeluaran->nama_pengeluaran = $request->input('nama_pengeluaran');
-                $updateDataPengeluaran->nominal_pengeluaran = $request->input('nominal_pengeluaran');
-                $updateDataPengeluaran->ket_pengeluaran = $request->input('ket_pengeluaran');
-                $updateDataPengeluaran->kategori_pengeluaran = $request->input('kategori_pengeluaran');
+                $updateDataPengeluaran->nama = $request->input('nama_pengeluaran');
+                $updateDataPengeluaran->nominal = $request->input('nominal_pengeluaran');
+                $updateDataPengeluaran->keterangan = $request->input('ket_pengeluaran');
+                $updateDataPengeluaran->kategori_pengeluaran_id = $request->input('kategori_pengeluaran');
                 $updateDataPengeluaran->update();
 
                 return response()->json([

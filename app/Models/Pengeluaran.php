@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class Pengeluaran extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['country_name','capital_city'];
+    public function kategori_pengeluaran()
+    {
+        return $this->belongsTo(kategoriPengeluaran::class);
+    }
 }

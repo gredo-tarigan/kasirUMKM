@@ -62,13 +62,13 @@
                     </div>
                     <div class="col-lg">
                         <div class="mb-3"><label class="form-label" for="country"><strong>
-                           Kategori Pengeluaran</strong></label><input class="form-control" type="text" id="add_kp" placeholder="">
+                           Kategori Pengeluaran</strong></label><input class="form-control" type="text" id="add_katp" placeholder="">
                         </div>
                     </div>
 
                 </div>
                 <div class="mb-3"><label class="form-label" for="city"><strong>Keterangan
-                        </strong></label><textarea class="form-control" placeholder="(Boleh Kosong)" type="text" id="add_katp" name="city"></textarea>
+                        </strong></label><textarea class="form-control" placeholder="(Boleh Kosong)" type="text" id="add_kp" name="city"></textarea>
                     </div>
             </form>
         </div>

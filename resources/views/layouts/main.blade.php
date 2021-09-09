@@ -63,7 +63,7 @@
                             href="/expenses"><i class="fa fa-percent"></i><span>Kelola Data
                                 Pengeluaran{{ $title === 'Edit Data Pengeluaran' ? ' > Edit' : '' }}</span></a></li>
                 </ul>
-                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0 sidebarToggle"
                         id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>

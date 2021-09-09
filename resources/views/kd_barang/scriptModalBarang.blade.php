@@ -89,28 +89,28 @@
                          name: 'DT_RowIndex'
                      },
                      {
-                         data: 'nama_barang',
-                         name: 'nama_barang'
+                         data: 'nama',
+                         name: 'nama'
                      },
                      {
-                         data: 'hargamasuk_barang',
-                         name: 'hargamasuk_barang'
+                         data: 'harga_masuk',
+                         name: 'harga_masuk'
                      },
                      {
-                         data: 'hargajual_barang',
-                         name: 'hargajual_barang'
+                         data: 'harga_jual',
+                         name: 'harga_jual'
                      },
                      {
-                         data: 'stok_barang',
-                         name: 'stok_barang'
+                         data: 'stok',
+                         name: 'stok'
                      },
                      {
-                         data: 'supplier_barang',
-                         name: 'supplier_barang'
+                         data: 'supplier',
+                         name: 'supplier'
                      },
                      {
-                         data: 'ket_barang',
-                         name: 'ket_barang'
+                         data: 'keterangan',
+                         name: 'keterangan'
                      },
 
 
@@ -282,6 +282,8 @@
                      'add_stob': $('#add_stob').val(),
                      'add_supb': $('#add_supb').val(),
                      'add_kb': $('#add_kb').val(),
+                     'kategori_barang': $('#add_kategori_barang').val(),
+                     'kategori_penjualan': $('#add_kategori_penjualan').val(),
                  }
                  //console.log(tambahDataBarang);
                  $.ajaxSetup({

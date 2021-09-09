@@ -44,6 +44,8 @@ Route::get('/profil', function () {
 });
 
 Route::get('cashier', [kasirController::class, 'kasir']);
+Route::get('/get-dataTempPenjualan', [kasirController::class, 'getTempPenjualanList'])->name('get.tempPenjualan.list');
+
 
 Route::get('account', [akunController::class, 'index']);
 Route::post('account', [akunController::class, 'store']);

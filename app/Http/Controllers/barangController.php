@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\barangModel;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Validator;
+
+use App\Models\Barang;
+use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class barangController extends Controller
 {
@@ -16,21 +17,21 @@ class barangController extends Controller
             "title" => "Kelola Data Barang",
             "name" => "Gredo Jack",
             "judul_konten" => "Data Barang",
-            "data_barang" => barangModel::all(),
+            "data_barang" => Barang::all(),
             "carbon_today" => Carbon::today()->isoFormat('dddd, D MMMM Y')
 
 
         ]);
     }
 
-    public function editDataBarang(barangModel $barang_slug)
+    public function editDataBarang(Barang $barang_slug)
     {
         return view('kd_barang.edit_barang', [
             "title" => "Edit Data Barang",
             "name" => "Gredo Jack",
             "judul_konten" => "Data Barang",
-            /*  "barang" => barangModel::firstWhere('slug', $slug) */
-            /* "barang" => barangModel::find($id) */
+            /*  "barang" => Barang::firstWhere('slug', $slug) */
+            /* "barang" => Barang::find($id) */
             "barang" => $barang_slug
         ]);
     }
@@ -46,7 +47,7 @@ class barangController extends Controller
     public function fetchDataBarang()
     {
         //
-        $fetchDataBarang = barangModel::all();
+        $fetchDataBarang = Barang::all();
         return response()->json([
             'fetchDataBarang' => $fetchDataBarang,
         ]);
@@ -78,6 +79,8 @@ class barangController extends Controller
             'add_stob' => 'required|numeric|max:191',
             'add_supb' => 'nullable|max:191',
             'add_kb' => 'nullable|max:191',
+            'kategori_barang' => 'required|numeric',
+            'kategori_penjualan' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -86,13 +89,15 @@ class barangController extends Controller
                 'errors' => $validator->messages(),
             ]);
         } else {
-            $addDataBarang = new barangModel; //nama model migrasi database
-            $addDataBarang->nama_barang = $request->input('add_nb');
-            $addDataBarang->supplier_barang = $request->input('add_supb');
-            $addDataBarang->ket_barang = $request->input('add_kb');
-            $addDataBarang->hargamasuk_barang = $request->input('add_hmb');
-            $addDataBarang->hargajual_barang = $request->input('add_hjb');
-            $addDataBarang->stok_barang = $request->input('add_stob');
+            $addDataBarang = new Barang; //nama model migrasi database
+            $addDataBarang->nama = $request->input('add_nb');
+            $addDataBarang->supplier = $request->input('add_supb');
+            $addDataBarang->keterangan = $request->input('add_kb');
+            $addDataBarang->harga_masuk = $request->input('add_hmb');
+            $addDataBarang->harga_jual = $request->input('add_hjb');
+            $addDataBarang->stok = $request->input('add_stob');
+            $addDataBarang->kategori_penjualan_id = $request->input('kategori_penjualan');
+            $addDataBarang->kategori_barang_id = $request->input('kategori_barang');
             /* $addDataBarang->save();
             return response()->json([
                 'status' => 200,
@@ -134,7 +139,7 @@ class barangController extends Controller
     public function edit($id)
     {
         //
-        $editDataBarang = barangModel::find($id);
+        $editDataBarang = Barang::find($id);
         if ($editDataBarang) {
             return response()->json([
                 'status' => 200,
@@ -173,14 +178,14 @@ class barangController extends Controller
                 'errors' => $validator->messages(),
             ]);
         } else {
-            $updateDataBarang = barangModel::find($id); //nama model migrasi database
+            $updateDataBarang = Barang::find($id); //nama model migrasi database
             if ($updateDataBarang) {
-                $updateDataBarang->nama_barang = $request->input('nama_barang');
-                $updateDataBarang->supplier_barang = $request->input('supplier_barang');
-                $updateDataBarang->ket_barang = $request->input('ket_barang');
-                $updateDataBarang->hargamasuk_barang = $request->input('hargamasuk_barang');
-                $updateDataBarang->hargajual_barang = $request->input('hargajual_barang');
-                $updateDataBarang->stok_barang = $request->input('stok_barang');
+                $updateDataBarang->nama = $request->input('nama_barang');
+                $updateDataBarang->supplier = $request->input('supplier_barang');
+                $updateDataBarang->keterangan = $request->input('ket_barang');
+                $updateDataBarang->harga_masuk = $request->input('hargamasuk_barang');
+                $updateDataBarang->harga_jual = $request->input('hargajual_barang');
+                $updateDataBarang->stok = $request->input('stok_barang');
                 $updateDataBarang->update();
 
                 return response()->json([
@@ -205,7 +210,7 @@ class barangController extends Controller
     public function destroy($id)
     {
         //
-        $deleteDataBarang = barangModel::find($id);
+        $deleteDataBarang = Barang::find($id);
         $deleteDataBarang->delete();
         return response()->json([
             'status' => 200,
@@ -216,7 +221,7 @@ class barangController extends Controller
     // GET ALL COUNTRIES
     public function getCountriesList()
     {
-        $countries = barangModel::all();
+        $countries = Barang::all();
         return DataTables::of($countries)
             ->addIndexColumn()
             ->addColumn('actions', function($row){

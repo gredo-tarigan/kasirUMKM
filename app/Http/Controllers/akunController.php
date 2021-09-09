@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\akunModel;
+use App\Models\Akun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -17,7 +17,7 @@ class akunController extends Controller
             "title" => "Kelola Akun",
             "name" => "Obed Jack",
             "judul_konten" => "Data Akun",
-            "data_akun_sementara" => akunModel::all(),
+            "data_akun_sementara" => Akun::all(),
         ]);
     }
 
@@ -35,7 +35,7 @@ class akunController extends Controller
       // GET ALL PENGELUARAN
       public function getAkunList()
       {
-          $countries = akunModel::all();
+          $countries = Akun::all();
           return DataTables::of($countries)
               ->addIndexColumn()
               ->addColumn('actions', function ($row) {
@@ -55,7 +55,7 @@ class akunController extends Controller
           //
           $validator = Validator::make($request->all(), [
               'add_namaAkun' => 'required',
-              'add_username' => 'required|unique:akun_models,username', //make nama tabel bukan nama model //validasi unique
+              'add_username' => 'required|unique:akuns,username', //make nama tabel bukan nama model //validasi unique
               'add_password' => 'required',
               'add_noHpAkun' => 'required|numeric',
               'add_tipeAkun' => 'required|numeric',
@@ -68,13 +68,13 @@ class akunController extends Controller
                   'errors' => $validator->messages(),
               ]);
           } else {
-              $addDataAkun = new akunModel; //nama model migrasi database
-              $addDataAkun->nama_akun = $request->input('add_namaAkun');
+              $addDataAkun = new Akun(); //nama model migrasi database
+              $addDataAkun->nama = $request->input('add_namaAkun');
               $addDataAkun->username = $request->input('add_username');
               $addDataAkun->password = $request->input('add_password');
-              $addDataAkun->noHp_akun = $request->input('add_noHpAkun');
-              $addDataAkun->tipe_akun = $request->input('add_tipeAkun');
-              $addDataAkun->alamat_akun = $request->input('add_alamatAkun');
+              $addDataAkun->noHp = $request->input('add_noHpAkun');
+              $addDataAkun->tipe = $request->input('add_tipeAkun');
+              $addDataAkun->alamat = $request->input('add_alamatAkun');
               $query = $addDataAkun->save();
               if (!$query) {
                   return response()->json([
@@ -94,7 +94,7 @@ class akunController extends Controller
       public function edit($id)
       {
           //
-          $editDataAkun = akunModel::find($id);
+          $editDataAkun = Akun::find($id);
           if ($editDataAkun) {
               return response()->json([
                   'status' => 200,
@@ -113,7 +113,7 @@ class akunController extends Controller
         //
         $validator = Validator::make($request->all(), [
             'nama_akun' => 'required',
-            'username' => 'required|unique:akun_models,username,'.$id, //make nama tabel bukan nama model //validasi unique
+            'username' => 'required|unique:akuns,username,'.$id, //make nama tabel bukan nama model //validasi unique
             'password' => 'required',
             'noHp_akun' => 'required|numeric',
             'tipe_akun' => 'required|numeric',
@@ -126,14 +126,14 @@ class akunController extends Controller
                 'errors' => $validator->messages(),
             ]);
         } else {
-            $updateDataAkun = akunModel::find($id); //nama model migrasi database
+            $updateDataAkun = Akun::find($id); //nama model migrasi database
             if ($updateDataAkun) {
-                $updateDataAkun->nama_akun = $request->input('nama_akun');
+                $updateDataAkun->nama = $request->input('nama_akun');
                 $updateDataAkun->username = $request->input('username');
                 $updateDataAkun->password = $request->input('password');
-                $updateDataAkun->noHp_akun = $request->input('noHp_akun');
-                $updateDataAkun->tipe_akun = $request->input('tipe_akun');
-                $updateDataAkun->alamat_akun = $request->input('alamat_akun');
+                $updateDataAkun->noHp = $request->input('noHp_akun');
+                $updateDataAkun->tipe = $request->input('tipe_akun');
+                $updateDataAkun->alamat = $request->input('alamat_akun');
                 $updateDataAkun->update();
 
                 return response()->json([
@@ -152,7 +152,7 @@ class akunController extends Controller
     public function destroy($id)
     {
         //
-        $deleteDataAkun = akunModel::find($id);
+        $deleteDataAkun = Akun::find($id);
         $deleteDataAkun->delete();
         return response()->json([
             'status' => 200,

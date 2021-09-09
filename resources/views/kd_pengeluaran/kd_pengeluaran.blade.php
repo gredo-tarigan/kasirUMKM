@@ -30,6 +30,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                    </tbody>
                         <tfoot>
                             <tr class="text-center">
                                 <td><strong>#</strong></td>

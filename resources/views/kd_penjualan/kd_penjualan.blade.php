@@ -80,7 +80,7 @@
                 </div>
                 <div class="col-md-6 text-md-end">
 
-                    <div><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" data-bs-toggle="modal" data-bs-target="#modalTambah" href=""><i
+                    <div><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" data-bs-toggle="" data-bs-target="" href="http://kasirtugasakhir2.test/cashier"><i
                                 class="fas fa-plus-square fa-sm text-white-50"></i>&nbsp;Tambah Data Penjualan</a></div>
                 </div>
             </div>

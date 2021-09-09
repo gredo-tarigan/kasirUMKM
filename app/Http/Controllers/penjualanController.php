@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\penjualanModel;
+use App\Models\Penjualan;
 use Carbon\Carbon;
 
 class penjualanController extends Controller
@@ -14,12 +14,12 @@ class penjualanController extends Controller
             "title" => "Kelola Data Penjualan",
             "name" => "Gredo Tarigan",
             "judul_konten" => "Data Penjualan",
-            "data_penjualan" => penjualanModel::all(),
+            "data_penjualan" => Penjualan::all(),
             "carbon_today" => Carbon::today()->isoFormat('dddd, D MMMM Y' )
         ]);
     }
 
-    public function editDataPenjualan(penjualanModel $penjualan_slug)
+    public function editDataPenjualan(Penjualan $penjualan_slug)
     {
         return view('kd_penjualan.edit_penjualan', [
             "title" => "Edit Data Penjualan",

@@ -33,8 +33,8 @@
                          name: 'DT_RowIndex'
                      },
                      {
-                         data: 'nama_akun',
-                         name: 'nama_akun'
+                         data: 'nama',
+                         name: 'nama'
                      },
                      {
                          data: 'username',
@@ -45,16 +45,16 @@
                          name: 'password'
                      },
                      {
-                         data: 'noHp_akun',
-                         name: 'noHp_akun'
+                         data: 'noHp',
+                         name: 'noHp'
                      },
                      {
-                         data: 'tipe_akun',
-                         name: 'tipe_akun'
+                         data: 'tipe',
+                         name: 'tipe'
                      },
                      {
-                         data: 'alamat_akun',
-                         name: 'alamat_akun'
+                         data: 'alamat',
+                         name: 'alamat'
                      },
 
 
