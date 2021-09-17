@@ -21,6 +21,7 @@ class CreateAkunsTable extends Migration
             $table->integer('noHp');
             $table->string('alamat');
             $table->integer('tipe');
+            $table->string('remember_token')->nullable();
 
             $table->timestamps();
         });

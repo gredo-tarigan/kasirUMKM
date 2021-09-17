@@ -19,8 +19,9 @@ class CreateTempPenjualansTable extends Migration
             $table->foreignId('kategori_penjualan_id');
             $table->foreignId('akun_id');
             $table->integer('sub_total');
+            $table->foreignId('nota_id');
             $table->integer('harga_jadi');
-            $table->integer('massa_pieces'); // untuk ngubungin ke stok terus ntar dikurangin
+            $table->decimal('massa_pieces'); // untuk ngubungin ke stok terus ntar dikurangin
 
             $table->timestamps();
         });

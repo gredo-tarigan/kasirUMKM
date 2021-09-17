@@ -15,7 +15,6 @@ class barangController extends Controller
     {
         return view('kd_barang.kd_barang', [
             "title" => "Kelola Data Barang",
-            "name" => "Gredo Jack",
             "judul_konten" => "Data Barang",
             "data_barang" => Barang::all(),
             "carbon_today" => Carbon::today()->isoFormat('dddd, D MMMM Y')
@@ -28,7 +27,6 @@ class barangController extends Controller
     {
         return view('kd_barang.edit_barang', [
             "title" => "Edit Data Barang",
-            "name" => "Gredo Jack",
             "judul_konten" => "Data Barang",
             /*  "barang" => Barang::firstWhere('slug', $slug) */
             /* "barang" => Barang::find($id) */

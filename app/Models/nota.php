@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use Carbon\Carbon;
-
-class Akun extends \Illuminate\Foundation\Auth\User
+class nota extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    public function relasi_tempPenjualan()
+    {
+        return $this->hasMany('App\Models\tempPenjualan'::class);
+    }
 }

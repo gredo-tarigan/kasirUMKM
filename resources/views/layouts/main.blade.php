@@ -147,7 +147,8 @@
                                                 <div class="status-indicator"></div>
                                             </div>
                                             <div class="fw-bold">
-                                                <div class="text-truncate"><span>I have the photos that you ordered last
+                                                <div class="text-truncate"><span>I have the photos that you ordered
+                                                        last
                                                         month!</span></div>
                                                 <p class="small text-gray-500 mb-0">Jae Chun - 1d</p>
                                             </div>
@@ -184,7 +185,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
                                         aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
-                                            class="d-none d-lg-inline me-2 text-gray-600 small">{{ $name }}</span><img
+                                            class="d-none d-lg-inline me-2 text-gray-600 small">{{ auth()->user()->nama }}</span><img
                                             class="border rounded-circle img-profile"
                                             src="assets/img/avatars/avatar1.jpeg"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a
@@ -195,8 +196,12 @@
                                             class="dropdown-item" href="#"><i
                                                 class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity
                                             log</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i
-                                                class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                        <div class="dropdown-divider"></div>
+                                        <form action="/logout" method="post">
+                                            @csrf
+                                            <button class="dropdown-item" type="submit"><i
+                                                    class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</button>
+                                        </form>
                                     </div>
                                 </div>
                             </li>
@@ -206,17 +211,19 @@
                 <div class="container-fluid">
                     {{-- <h3 class="text-dark mb-4">{{ $judul_konten }}</h3> --}}
                     <div class="row mb-3">
-                        
-                    @yield('content')
-                       
+
+                        @yield('content')
+
                     </div>
                 </div>
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
-                        <div class="text-center my-auto copyright"><span>Copyright © Scriptsweet- Jack Gredo 2021</span></div>
+                        <div class="text-center my-auto copyright"><span>Copyright © Scriptsweet- Jack Gredo
+                                2021</span></div>
                     </div>
                 </footer>
-            </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+            </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i
+                    class="fas fa-angle-up"></i></a>
         </div>
         <script src="{{ asset('/assets/bootstrap/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('/assets/js/bs-init.js') }}"></script>

@@ -14,7 +14,6 @@ class pengeluaranController extends Controller
     {
         return view('kd_pengeluaran.kd_pengeluaran', [
             "title" => "Kelola Data Pengeluaran",
-            "name" => "Tarigan Jack",
             "judul_konten" => "Data Pengeluaran",
             "data_pengeluaran" => Pengeluaran::all(),
             "carbon_today" => Carbon::today()->isoFormat('dddd, D MMM Y')

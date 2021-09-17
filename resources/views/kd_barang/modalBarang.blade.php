@@ -58,8 +58,8 @@
                                     Barang</strong></label>
                             <select class="custom-select" id="add_kategoriPenjualan">
                                 <option selected>Choose...</option>
-                                <option value="1">Eceran</option>
-                                <option value="2">Per Pieces</option>
+                                <option value="1">per Pieces</option>
+                                <option value="2">Eceran</option>
                             </select>
                         </div>
                     </div>

@@ -79,7 +79,7 @@
                     </div>
                     <div class="col-lg">
                         <div class="mb-3"><label class="form-label" for="country"><strong>
-                                    Password</strong></label><input class="form-control" type="text" id="add_password"
+                                    Password</strong></label><input class="form-control" type="password" id="add_password"
                                 placeholder="" name=""></div>
                     </div>
                 </div>              

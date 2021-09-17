@@ -19,4 +19,11 @@ class tempPenjualan extends Model
     {
         return $this->belongsTo(Barang::class);
     }
+
+    public function relasi_nota()
+    {
+        return $this->belongsTo(nota::class, 'id');
+    }
+
+    
 }
