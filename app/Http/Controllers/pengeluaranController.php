@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Pengeluaran;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Validator;
+use App\Models\Pengeluaran;
+use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class pengeluaranController extends Controller
 {
@@ -36,6 +36,12 @@ class pengeluaranController extends Controller
                 </div>';
             })
             ->rawColumns(['actions'])
+     /*        ->editColumn('created_at', function ($row) {
+                return $row->created_at->format('Y-m-d'); // human readable format
+            }) */
+            ->editColumn('created_at', function ($row) {
+                return $row->created_at->format('Y-m-d'); // human readable format
+            })
             ->make(true);
     }
 

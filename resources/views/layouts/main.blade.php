@@ -20,7 +20,7 @@
             <div class="container-fluid d-flex flex-column p-0"><a
                     class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                     <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
-                    <div class="sidebar-brand-text mx-3"><span>Brand</span></div>
+                    <div class="sidebar-brand-text mx-3"><span>OLALA'S<br>CASHIER</span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
@@ -43,10 +43,12 @@
                             href="/cashier"><i
                                 class="fa fa-shopping-cart"></i><span>Kasir{{ $title === 'xx' ? ' > Edit' : '' }}</span></a>
                     </li>
-                    <li class="nav-item"><a
-                            class="nav-link {{ $title === 'Kelola Akun' ? 'active' : ($title === 'Edit Data Akun' ? 'active' : '') }}"
-                            href="/account"><i class="far fa-user-circle"></i><span>Kelola
-                                Akun{{ $title === 'Edit Data Akun' ? ' > Edit' : '' }}</span></a></li>
+                    @if (auth()->user()->tipe == 2)
+                        <li class="nav-item"><a
+                                class="nav-link {{ $title === 'Kelola Akun' ? 'active' : ($title === 'Edit Data Akun' ? 'active' : '') }}"
+                                href="/account"><i class="far fa-user-circle"></i><span>Kelola
+                                    Akun{{ $title === 'Edit Data Akun' ? ' > Edit' : '' }}</span></a></li>
+                    @endif
                     <li class="nav-item"><a
                             class="nav-link {{ $title === 'Kelola Data Barang' ? 'active' : ($title === 'Edit Data Barang' ? 'active' : '') }}"
                             href="/goods">
@@ -58,10 +60,13 @@
                             class="nav-link {{ $title === 'Kelola Data Penjualan' ? 'active' : ($title === 'Edit Data Penjualan' ? 'active' : '') }}"
                             href="/sales"><i class="fa fa-paperclip"></i><span>Kelola Data
                                 Penjualan{{ $title === 'Edit Data Penjualan' ? ' > Edit' : '' }}</span></a></li>
-                    <li class="nav-item"><a
-                            class="nav-link {{ $title === 'Kelola Data Pengeluaran' ? 'active' : ($title === 'Edit Data Pengeluaran' ? 'active' : '') }}"
-                            href="/expenses"><i class="fa fa-percent"></i><span>Kelola Data
-                                Pengeluaran{{ $title === 'Edit Data Pengeluaran' ? ' > Edit' : '' }}</span></a></li>
+                    @if (auth()->user()->tipe == 2)
+                        <li class="nav-item"><a
+                                class="nav-link {{ $title === 'Kelola Data Pengeluaran' ? 'active' : ($title === 'Edit Data Pengeluaran' ? 'active' : '') }}"
+                                href="/expenses"><i class="fa fa-percent"></i><span>Kelola Data
+                                    Pengeluaran{{ $title === 'Edit Data Pengeluaran' ? ' > Edit' : '' }}</span></a>
+                        </li>
+                    @endif
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0 sidebarToggle"
                         id="sidebarToggle" type="button"></button></div>

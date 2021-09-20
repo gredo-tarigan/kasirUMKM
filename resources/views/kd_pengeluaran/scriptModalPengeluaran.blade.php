@@ -49,32 +49,33 @@
                         name: 'keterangan'
                     },
                     {
+                        data : 'created_at',
+                        name : 'created_at',
+                    },
+                    {
                         data: 'actions',
                         name: 'actions',
                         orderable: false,
                         searchable: false
                     },
-                    {
-                        data : 'created_at',
-                        name : 'created_at',
-
-                    },
                 ]
 
             });
 
-            table.column(3).visible(0);
-            table.column(5).visible(0);
+
+            table.column(6).visible(0);
+            table.column(4).visible(0);
             $(".update_data input").on("change", function(e) {
                 const kaloCheck = e.currentTarget.checked;
                 if (kaloCheck) {
-                    table.column(3).visible(1);
-                    table.column(5).visible(1);
+                    table.column(6).visible(1);
+                    table.column(4).visible(1);
                 } else {
-                    table.column(3).visible(0);
-                    table.column(5).visible(0);
+                    table.column(6).visible(0);
+                    table.column(4).visible(0);
                 }
             });
+
 
             // ======== //
 

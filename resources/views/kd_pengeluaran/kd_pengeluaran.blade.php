@@ -23,10 +23,10 @@
                             <th>Nominal Pengeluaran</th>
                             <th>Jenis Pengeluaran</th>
                             <th>Keterangan Pengeluaran</th>
+                            <th>Tanggal</th>
                             <th {{-- class="update" style="display:none;" --}}><i class="fa fa-pencil-square-o fa-sm"></i>
                                 / <i class="fa fa-trash-o fa-sm">
                             </th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,11 +38,12 @@
                                 <td><strong>Nominal Pengeluaran</strong></td>
                                 <td><strong>Jenis Pengeluaran</strong></td>
                                 <td><strong>Keterangan Pengeluaran</strong></td>
+                                <td>Tanggal</td>
+
 {{--                                 <td class="update" style="display:none;"><strong>Date</strong></td>
  --}}                                <td {{-- class="update" style="display:none;" --}}><i class="fa fa-pencil-square-o fa-sm"></i>
                                     / <i class="fa fa-trash-o fa-sm">
                                 </td>
-                                <td></td>
                             </tr>
                         </tfoot>
                        {{--  @foreach ($data_pengeluaran as $index => $dsd_kdPengeluaran)
