@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
-use App\Models\kategoriBarang;
+// use App\Models\kategoriBarang;
 use Illuminate\Support\Facades\DB;
 
 class kasirController extends Controller
@@ -25,7 +25,7 @@ class kasirController extends Controller
             "judul_konten" => "Tarigan Jack",
             "carbon_today" => Carbon::today(),
             "option_select" => Barang::all(),
-            "woy" => kategoriBarang::all(),
+            // "woy" => kategoriBarang::all(),
         ]);
     }
 
@@ -58,7 +58,7 @@ class kasirController extends Controller
         return DataTables::of($tampilan_kasir)
             ->addIndexColumn()
             ->addColumn('percobaan', function ($row) {
-                return $row->kategori_penjualan->nama;
+                return $row->kategori_penjualan->kategori_penjualan;
             })
             ->addColumn('percobaan2', function ($row) {
                 return $row->barang->nama;
@@ -79,11 +79,12 @@ class kasirController extends Controller
         $validator = Validator::make($request->all(), [
             'add_idBarang' => 'required|numeric',
             'add_hargaJadi' => 'required|numeric', //make nama tabel bukan nama model //validasi unique
-            'add_massaPieces' => 'required|numeric',
+            'add_massaPieces' => 'required_with:db_massaPieces|numeric|lte:db_massaPieces',
             'add_penjualanId' => 'required|numeric',
             'add_akunId' => 'required|numeric',
             'add_subTotal' => 'required|numeric',
             'add_notaId' => 'required|numeric',
+            'db_massaPieces' => 'required|numeric'
         ]);
 
         if ($validator->fails()) {
@@ -102,6 +103,9 @@ class kasirController extends Controller
             $addDataTempPenjualan->sub_total = $request->input('add_subTotal');
             $addDataTempPenjualan->nota_id = $request->input('add_notaId');
             $query = $addDataTempPenjualan->save();
+
+            DB::table('barangs')->where('id', $request->input('add_idBarang'))->decrement('stok', $request->input('add_massaPieces'));
+            
             if (!$query) {
 
 
@@ -157,6 +161,9 @@ class kasirController extends Controller
         //
         $deleteDataTempPenjualan = tempPenjualan::find($id);
         $deleteDataTempPenjualan->delete();
+        
+        DB::table('barangs')->where('id', $deleteDataTempPenjualan->barang_id)->increment('stok', $deleteDataTempPenjualan->massa_pieces);
+
         return response()->json([
             'status' => 200,
             'message' => 'Data Berhasil Dihapus',

@@ -72,13 +72,45 @@
                  processing: true,
                  info: true,
                  ajax: "{{ route('get.countries.list') }}",
+                // dom: "Blfrtip",
+                 buttons: [{
+                         text: 'csv',
+                         extend: 'csvHtml5',
+                         exportOptions: {
+                             columns: ':visible:not(.not-export-col)'
+                         }
+                     },
+                     {
+                         text: 'excel',
+                         extend: 'excelHtml5',
+                         exportOptions: {
+                             columns: ':visible:not(.not-export-col)'
+                         }
+                     },
+                     {
+                         text: 'pdf',
+                         extend: 'pdfHtml5',
+                         exportOptions: {
+                             columns: ':visible:not(.not-export-col)'
+                         }
+                     },
+                     {
+                         text: 'print',
+                         extend: 'print',
+                         exportOptions: {
+                             columns: ':visible:not(.not-export-col)'
+                         }
+                     },
+
+                 ],
                  "pageLength": 5,
                  "aLengthMenu": [
                      [5, 10, 25, 50, -1],
                      [5, 10, 25, 50, "All"]
                  ],
 
-                 columns: [
+
+                 aoColumns: [
                      /* {
                                               data: 'id',
                                               name: 'id'
@@ -101,8 +133,8 @@
                          name: 'harga_jual'
                      },
                      {
-                         data: 'stok',
-                         name: 'stok'
+                         mData: getStokdanKategoriPenjualan,
+                         name: 'getStokdanKategoriPenjualan'
                      },
                      {
                          data: 'supplier',
@@ -139,6 +171,30 @@
                      table.column(7).visible(0);
                  }
              });
+
+             // ======== //
+             function getStokdanKategoriPenjualan(data, type, dataToSet) {
+                 //return data.massa_pieces + "" + data.kategori_penjualan_id;
+                 return data.stok + " " + data.penjualan; //dari kontroller
+             }
+             // ======== //
+
+             // ======== //
+            
+             $("ul ul a").click(function() {
+                 var i = $(this).index() + 1
+                 var table = $('#tabelBarang').DataTable();
+                 if (i == 1) {
+                     table.button('.buttons-csv').trigger();
+                 } else if (i == 2) {
+                     table.button('.buttons-excel').trigger();
+                 } else if (i == 3) {
+                     table.button('.buttons-pdf').trigger();
+                 } else if ($('#bl_print').click()) {
+                     table.button('.buttons-print').trigger();
+                 }
+             });
+           
 
              // ======== //
 
@@ -195,12 +251,13 @@
                              $('#success_message').addClass('alert alert-danger');
                              $('#success_message').text(response.message);
                          } else {
-                             $('#edit_nb').val(response.editDataBarang.nama_barang);
-                             $('#edit_hmb').val(response.editDataBarang.hargamasuk_barang);
-                             $('#edit_hjb').val(response.editDataBarang.hargajual_barang);
-                             $('#edit_stob').val(response.editDataBarang.stok_barang);
-                             $('#edit_supb').val(response.editDataBarang.supplier_barang);
-                             $('#edit_kb').val(response.editDataBarang.ket_barang);
+                             $('#edit_nb').val(response.editDataBarang.nama);
+                             $('#edit_hmb').val(response.editDataBarang.harga_masuk);
+                             $('#edit_hjb').val(response.editDataBarang.harga_jual);
+                             $('#edit_stob').val(response.editDataBarang.stok);
+                             $('#edit_supb').val(response.editDataBarang.supplier);
+                             $('#edit_kb').val(response.editDataBarang.keterangan);
+                             $('#edit_kategori_penjualan').val(response.editDataBarang.kategori_penjualan_id);
                              $('#edit_DB_id').val(id_barang);
                          }
                      }
@@ -220,8 +277,9 @@
                      'stok_barang': $('#edit_stob').val(),
                      'supplier_barang': $('#edit_supb').val(),
                      'ket_barang': $('#edit_kb').val(),
+                     'kategori_penjualan': $('#edit_kategori_penjualan').val(),
                  }
-                 
+
                  $.ajaxSetup({
                      headers: {
                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -282,7 +340,7 @@
                      'add_stob': $('#add_stob').val(),
                      'add_supb': $('#add_supb').val(),
                      'add_kb': $('#add_kb').val(),
-                     'kategori_barang': $('#add_kategori_barang').val(),
+                    //  'kategori_barang': $('#add_kategori_barang').val(),
                      'kategori_penjualan': $('#add_kategori_penjualan').val(),
                  }
                  //console.log(tambahDataBarang);

@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @extends('kd_barang.modalBarang')
+@extends('layouts.modalAkunUser')
 @section('content')
     <!-- Untuk mendukung AJAX; Fitur Laravel -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -14,7 +15,7 @@
                 <p class="text-primary m-0 fw-bold">Data Barang</p>
             </div>
             <div class="card-body">
-{{--                 <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-6 text-nowrap">
 
                         <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label
@@ -31,7 +32,8 @@
                                     aria-controls="dataTable" placeholder="Search"></label></div>
                     </div>
                 </div> --}}
-                <div class="table-responsive mt-2 mb-3 table-striped" id="dataTable">
+
+                <div class="table-responsive mt-3 mb-3 table-striped" id="dataTable">
                     <table class="table table-bordered" id="tabelBarang" style="width:100%">
                         <thead>
                             <tr class="text-center">
@@ -42,8 +44,8 @@
                                 <th>Stok Barang</th>
                                 <th {{-- class="update" style="display:none;" --}}>Supplier</th>
                                 <th {{-- class="update" style="display:none;" --}}>Keterangan</th>
-{{--                                 <th class="update" style="display:none;">Date</th>
- --}}                                <th {{-- class="update" style="display:none;" --}}><i class="fa fa-pencil-square-o fa-sm"></i>
+                                {{-- <th class="update" style="display:none;">Date</th> --}} <th {{-- class="update" style="display:none;" --}} class="not-export-col"><i
+                                        class="fa fa-pencil-square-o fa-sm"></i>
                                     / <i class="fa fa-trash-o fa-sm">
                                 </th>
                             </tr>
@@ -84,8 +86,7 @@
                                 <td><strong>Stok Barang</strong></td>
                                 <td {{-- class="update" style="display:none;" --}}><strong>Supplier</strong></td>
                                 <td {{-- class="update" style="display:none;" --}}><strong>Keterangan</strong></td>
-{{--                                 <td class="update" style="display:none;"><strong>Date</strong></td>
- --}}                                <td {{-- class="update" style="display:none;" --}}><i class="fa fa-pencil-square-o fa-sm"></i>
+                                {{-- <td class="update" style="display:none;"><strong>Date</strong></td> --}} <td {{-- class="update" style="display:none;" --}}><i class="fa fa-pencil-square-o fa-sm"></i>
                                     / <i class="fa fa-trash-o fa-sm">
                                 </td>
                             </tr>
@@ -93,23 +94,8 @@
                     </table>
                 </div>
 
-                <div class="row mb-2">
-                    <div class="col-md-6 text-nowrap">
-                        <div class="form-check form-switch toggle-text update_data">
-                            <input class="form-check-input" type="checkbox" id="Mode_Kustom">
-                            <div><i class="fa fa-pencil-square-o fa-sm"></i> / <i class="fa fa-trash-o fa-sm"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-md-end">
 
-                        <div><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" data-bs-toggle="modal"
-                                data-bs-target="#modalTambah" href="#"><i
-                                    class="fas fa-plus-square fa-sm text-white-50"></i>&nbsp;Tambah Data Barang</a></div>
-                    </div>
-                </div>
-{{-- 
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-6 align-self-center">
                         <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of
                             27
@@ -130,17 +116,60 @@
                     </div>
                 </div> --}}
 
+                <div class="row mb-2">
+
+                    <div class="col-md-7">
+                        <div class="form-check form-switch toggle-text update_data">
+                            <input class="form-check-input" type="checkbox" id="Mode_Kustom">
+                            <div><i class="fa fa-pencil-square-o fa-sm"></i> / <i class="fa fa-trash-o fa-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 text-md-end">
+                        
+                        <ul class="btn-group">
+                            <button type="button" class="btn btn-success btn-sm dropdown-toggle text-white"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fa fa-download fa-sm text-white-50"></i>&nbsp;
+                                Generate Laporan
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Export CSV</a>
+                                <a class="dropdown-item" href="#">Export Excel</a>
+                                <a class="dropdown-item" href="#">Export PDF</a>
+                                <div class="dropdown-divider"></div>
+                                <a id="bl_print" class="dropdown-item" href="#">Print</a>
+                            </ul>
+                        </ul>
+
+                        <ul class="btn btn-primary btn-sm" role="button" data-bs-toggle="modal" data-bs-target="#modalTambah"
+                            href="#"><i class="fas fa-plus-square fa-sm text-white-50"></i>&nbsp;Data Barang</ul>
+                    </div>
+
+
+                </div>
+                
                 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
                 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
                                 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
                 <script src="{{ asset('datatable/js/jquery.dataTables.min.js') }}"></script>
                 <script src="{{ asset('datatable/js/dataTables.bootstrap4.min.js') }}"></script>
                 <script src="{{ asset('sweetalert2/sweetalert2.min.js') }}"></script>
                 <script src="{{ asset('toastr/toastr.min.js') }}"></script>
 
+                <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js" type="text/javascript"></script>
+                <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js" type="text/javascript"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" type="text/javascript"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" type="text/javascript"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" type="text/javascript"></script>
+                <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js" type="text/javascript"></script>
+                <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js" type="text/javascript"></script>
+
                 <!-- script toggle -->
-            {{--     <script>
+                {{-- <script>
                     $(document).ready(function() {
                         $(".update_data input").on("change", function(e) {
                             const kaloCheck = e.currentTarget.checked;

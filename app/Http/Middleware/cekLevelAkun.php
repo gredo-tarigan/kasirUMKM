@@ -16,7 +16,7 @@ class cekLevelAkun
      */
     public function handle(Request $request, Closure $next, ...$levels)
     {
-        if(in_array($request->user()->tipe,$levels)){
+        if(in_array($request->user()->kategori_akun_id,$levels)){
             return $next($request);
         }
 

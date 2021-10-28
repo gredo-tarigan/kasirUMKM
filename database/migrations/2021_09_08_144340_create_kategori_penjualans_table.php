@@ -15,7 +15,7 @@ class CreateKategoriPenjualansTable extends Migration
     {
         Schema::create('kategori_penjualans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->unique();
+            $table->string('kategori_penjualan')->unique();
             $table->timestamps();
         });
     }

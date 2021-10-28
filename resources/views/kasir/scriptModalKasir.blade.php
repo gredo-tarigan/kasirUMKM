@@ -81,6 +81,7 @@
                      'add_idBarang': $('#fInput_id_Barang').val(),
                      'add_hargaJadi': $('#fInput_hargaJadi').val(),
                      'add_massaPieces': $('#fInput_massaPieces').val(),
+                     'db_massaPieces': $('#option_data').attr('data-stok-database'),
                      'add_penjualanId': $('#fInput_penjualanId').val(),
                      'add_akunId': $('#fInput_akunId').val(),
                      'add_subTotal': $('#fInput_subTotal').val(),

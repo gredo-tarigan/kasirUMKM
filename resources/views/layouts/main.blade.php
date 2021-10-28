@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('/assets/fonts/fontawesome-all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/fonts/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/fonts/fontawesome5-overrides.min.css') }}">
+
 </head>
 
 <body id="page-top">
@@ -43,12 +44,13 @@
                             href="/cashier"><i
                                 class="fa fa-shopping-cart"></i><span>Kasir{{ $title === 'xx' ? ' > Edit' : '' }}</span></a>
                     </li>
-                    @if (auth()->user()->tipe == 2)
+                    @if (auth()->user()->kategori_akun_id == 2)
                         <li class="nav-item"><a
                                 class="nav-link {{ $title === 'Kelola Akun' ? 'active' : ($title === 'Edit Data Akun' ? 'active' : '') }}"
                                 href="/account"><i class="far fa-user-circle"></i><span>Kelola
                                     Akun{{ $title === 'Edit Data Akun' ? ' > Edit' : '' }}</span></a></li>
                     @endif
+                    @if (auth()->user()->kategori_akun_id == 2)
                     <li class="nav-item"><a
                             class="nav-link {{ $title === 'Kelola Data Barang' ? 'active' : ($title === 'Edit Data Barang' ? 'active' : '') }}"
                             href="/goods">
@@ -56,11 +58,14 @@
                             <span>{{ $title === 'Edit Data Barang' ? '> Edit Data Barang' : 'Kelola Data Barang' }}
                             </span>
                         </a></li>
+                    @endif
+                    @if (auth()->user()->kategori_akun_id == 2)
                     <li class="nav-item"><a
                             class="nav-link {{ $title === 'Kelola Data Penjualan' ? 'active' : ($title === 'Edit Data Penjualan' ? 'active' : '') }}"
                             href="/sales"><i class="fa fa-paperclip"></i><span>Kelola Data
                                 Penjualan{{ $title === 'Edit Data Penjualan' ? ' > Edit' : '' }}</span></a></li>
-                    @if (auth()->user()->tipe == 2)
+                    @endif
+                    @if (auth()->user()->kategori_akun_id == 2)
                         <li class="nav-item"><a
                                 class="nav-link {{ $title === 'Kelola Data Pengeluaran' ? 'active' : ($title === 'Edit Data Pengeluaran' ? 'active' : '') }}"
                                 href="/expenses"><i class="fa fa-percent"></i><span>Kelola Data
@@ -78,6 +83,7 @@
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3"
                             id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <ul class="navbar-nav flex-nowrap ms-auto">
+
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link"
                                     aria-expanded="false" data-bs-toggle="dropdown" href="#"><i
                                         class="fas fa-search"></i></a>
@@ -92,7 +98,7 @@
                                     </form>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
+                            {{-- <li class="nav-item dropdown no-arrow mx-1">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
                                         aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
                                             class="badge bg-danger badge-counter">3+</span><i
@@ -128,8 +134,8 @@
                                             Alerts</a>
                                     </div>
                                 </div>
-                            </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
+                            </li> --}}
+                            {{-- <li class="nav-item dropdown no-arrow mx-1">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
                                         aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
                                             class="badge bg-danger badge-counter">7</span><i
@@ -185,7 +191,7 @@
                                 </div>
                                 <div class="shadow dropdown-list dropdown-menu dropdown-menu-end"
                                     aria-labelledby="alertsDropdown"></div>
-                            </li>
+                            </li> --}}
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
@@ -193,14 +199,16 @@
                                             class="d-none d-lg-inline me-2 text-gray-600 small">{{ auth()->user()->nama }}</span><img
                                             class="border rounded-circle img-profile"
                                             src="assets/img/avatars/avatar1.jpeg"></a>
-                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a
+                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                        {{-- <a
                                             class="dropdown-item" href="#"><i
-                                                class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a
-                                            class="dropdown-item" href="#"><i
-                                                class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a><a
-                                            class="dropdown-item" href="#"><i
+                                                class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a> --}}
+                                        <button class="dropdown-item" href="#" id="settingsAkun" data-bs-toggle="modal"
+                                        data-bs-target="#modalSettingAkun" value="{{  Auth::user()->id  }}"><i
+                                                class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</button>{{--<a
+                                            class="dropdown-item" href=""><i
                                                 class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity
-                                            log</a>
+                                            log </a>--}}
                                         <div class="dropdown-divider"></div>
                                         <form action="/logout" method="post">
                                             @csrf
@@ -227,12 +235,12 @@
                                 2021</span></div>
                     </div>
                 </footer>
-            </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i
-                    class="fas fa-angle-up"></i></a>
+            </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
         </div>
         <script src="{{ asset('/assets/bootstrap/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('/assets/js/bs-init.js') }}"></script>
         <script src="{{ asset('/assets/js/theme.js') }}"></script>
+
 </body>
 
 </html>

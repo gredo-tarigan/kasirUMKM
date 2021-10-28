@@ -1,13 +1,26 @@
 @extends('layouts.modal')
 
-@section('modal_content')
+@section('modal_content_tabel')
+<div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header crd-header py-3">
-            <p class="text-primary m-0 fw-bold">Edit Data Penjualan</p>
+            <p class="text-primary m-0 fw-bold">Detail Data Penjualan</p>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <table class="table table-bordered" id="tabelEditPenjualan" style="width:100%">
+            <div class="row">
+                <div class="col-lg">
+                    <div class="mb-3"><label class="form-label" for="city"><strong>Nomor Nota
+                                :</strong></label><input class="form-control" placeholder="" type="text"
+                            id="detailNotaNomorNota" name="" disabled></div>
+                </div>
+                <div class="col-lg">
+                    <div class="mb-3"><label class="form-label" for="city"><strong>Nama Pembeli
+                                :</strong></label><input class="form-control" placeholder="" type="text"
+                            id="detailNotaNamaPembeli" name="" disabled></div>
+                </div>
+            </div>
+            <table class="table table-bordered" id="tabelDetailPenjualan" style="width:100%">
                 <thead>
                     <tr class="text-center">
                         <th>#</th>
@@ -15,7 +28,6 @@
                         <th>Qty</th>
                         <th>Harga</th>
                         <th>Sub Total</th>
-                        <th><i class="fa fa-trash-o fa-sm"></i>
                         </th>
                     </tr>
                 </thead>
@@ -28,7 +40,6 @@
                         <td><strong>Qty</strong></td>
                         <td><strong>Harga</strong></td>
                         <td><strong>Sub Total</strong></td>
-                        <td><i class="fa fa-trash-o fa-sm"></i>
                         </td>
                     </tr>
                 </tfoot>
@@ -36,9 +47,9 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button id="update_akunBtn" type="button" class="btn btn-primary">Update Data</button>
         </div>
     </div>
+</div>
 @endsection
 
 @section('modal_content_hapus')

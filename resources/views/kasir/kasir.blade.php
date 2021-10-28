@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @extends('kasir.modalKasir')
+@extends('layouts.modalAkunUser')
 @section('content')
     <!-- Untuk mendukung AJAX; Fitur Laravel -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -108,7 +109,7 @@
                             @foreach ($option_select as $option)
                                 <option id="option_data" data-harga-barang="{{ $option->harga_jual }}"
                                     data-id-barang="{{ $option->id }}" value=""
-                                    data-kategori-penjualan="{{ $option->kategori_penjualan_id }}">
+                                    data-kategori-penjualan="{{ $option->kategori_penjualan_id }}" data-stok-database="{{ $option->stok }}">
                                     {{ $option->nama }}
                                 </option>
                             @endforeach
@@ -155,19 +156,21 @@
                                                                                                                                                     justify-content: center;
                                                                                                                                                     align-items: center;">
 
-                                    @foreach ($woy as $item)
+                                   {{--  @foreach ($woy as $item)
                                     <button type="button" class="btn btn-success btn-sm yoman"
                                         style="width: 47%;  margin: 2.5px; color: white;" value="10000">Rp10.000</button>
-                                    @endforeach
-                                    {{-- <button type="button" id="btnSubmit" class="btn btn-info btn-sm"
-                                        style="width: 47%; margin: 2.5px; color: white;">Rp5000</button>
-                                    <button type="button" id="btnCancel" class="btn btn-info btn-sm"
-                                        style="width: 47%;  margin: 2.5px; color: white;">Rp7500</button>
-                                    <button type="button" id="btnSubmit" class="btn btn-success btn-sm"
-                                        style="width: 47%;  margin: 2.5px; color: white;">Rp10.000</button> --}}
-                                    <button type="button" id="btnCancel" class="btn btn-success btn-sm"
+                                    @endforeach --}}
+                                    <button type="button" id="btnSubmit" class="btn btn-info btn-sm yoman" data-val="5000"
+                                        style="width: 47%; margin: 2.5px; color: white;" >Rp5000</button>
+                                    <button type="button" id="btnCancel" class="btn btn-info btn-sm yoman" data-val="7500"
+                                        style="width: 47%;  margin: 2.5px; color: white;" >Rp7500</button>
+                                    <button type="button" id="btnSubmit" class="btn btn-success btn-sm yoman" data-val="10000"
+                                        style="width: 47%;  margin: 2.5px; color: white;" >Rp10.000</button>
+                                    <button type="button" id="btnSubmit" class="btn btn-success btn-sm yoman" data-val="15000"
+                                        style="width: 47%;  margin: 2.5px; color: white;" >Rp15.000</button>
+                                    {{-- <button type="button" id="btnCancel" class="btn btn-success btn-sm"
                                         style="width: 47%;  margin: 2.5px; color: white;"><i
-                                            class="fa fa-pencil-square-o fa-sm"></i></button>
+                                            class="fa fa-pencil-square-o fa-sm"></i></button> --}}
                                 </div>
                             </div>
                         </div>

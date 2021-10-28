@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @extends('kd_akun.modalAkun')
+@extends('layouts.modalAkunUser')
 @section('content')
  <!-- Untuk mendukung AJAX; Fitur Laravel -->
  <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -20,11 +21,10 @@
                         <tr class="text-center">
                             <th>#</th>
                             <th>Nama</th>
-                            <th>Username</th>
-                            <th>Password</th>
-                            <th>No. HP</th>
-                            <th>Tipe Akun</th>
                             <th>Alamat</th>
+                            <th>No. HP</th>
+                            <th>Kategori Akun</th>
+                            <th>Username</th>
                             <th class="update"><i class="fa fa-pencil-square-o fa-sm"></i> / <i
                                 class="fa fa-trash-o fa-sm">
                             </th>
@@ -61,11 +61,10 @@
                         <tr class="text-center">
                             <td>#</td>
                             <td>Nama</td>
-                            <td>Username</td>
-                            <td>Password</td>
-                            <td>No. HP</td>
-                            <td>Tipe Akun</td>
                             <td>Alamat</td>
+                            <td>No. HP</td>
+                            <td>Kategori Akun</td>
+                            <td>Username</td>
                             <td class="update"><i class="fa fa-pencil-square-o fa-sm"></i> / <i
                                 class="fa fa-trash-o fa-sm">
                             </td>

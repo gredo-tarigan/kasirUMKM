@@ -11,6 +11,6 @@ class nota extends Model
 
     public function relasi_tempPenjualan()
     {
-        return $this->hasMany('App\Models\tempPenjualan'::class);
+        return $this->hasMany(tempPenjualan::class);
     }
 }

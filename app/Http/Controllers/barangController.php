@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 
 use App\Models\Barang;
+use App\Models\kategoriPenjualan;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
@@ -17,9 +18,8 @@ class barangController extends Controller
             "title" => "Kelola Data Barang",
             "judul_konten" => "Data Barang",
             "data_barang" => Barang::all(),
-            "carbon_today" => Carbon::today()->isoFormat('dddd, D MMMM Y')
-
-
+            "carbon_today" => Carbon::today()->isoFormat('dddd, D MMMM Y'),
+            "kategori_penjualan" => kategoriPenjualan::all(),          
         ]);
     }
 
@@ -77,7 +77,7 @@ class barangController extends Controller
             'add_stob' => 'required|numeric|max:191',
             'add_supb' => 'nullable|max:191',
             'add_kb' => 'nullable|max:191',
-            'kategori_barang' => 'required|numeric',
+            // 'kategori_barang' => 'required|numeric',
             'kategori_penjualan' => 'required|numeric',
         ]);
 
@@ -95,7 +95,7 @@ class barangController extends Controller
             $addDataBarang->harga_jual = $request->input('add_hjb');
             $addDataBarang->stok = $request->input('add_stob');
             $addDataBarang->kategori_penjualan_id = $request->input('kategori_penjualan');
-            $addDataBarang->kategori_barang_id = $request->input('kategori_barang');
+            // $addDataBarang->kategori_barang_id = $request->input('kategori_barang');
             /* $addDataBarang->save();
             return response()->json([
                 'status' => 200,
@@ -168,6 +168,7 @@ class barangController extends Controller
             'stok_barang' => 'required|numeric|max:191',
             'supplier_barang' => 'nullable|max:191',
             'ket_barang' => 'nullable|max:191',
+            'kategori_penjualan' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -184,6 +185,7 @@ class barangController extends Controller
                 $updateDataBarang->harga_masuk = $request->input('hargamasuk_barang');
                 $updateDataBarang->harga_jual = $request->input('hargajual_barang');
                 $updateDataBarang->stok = $request->input('stok_barang');
+                $updateDataBarang->kategori_penjualan_id = $request->input('kategori_penjualan');
                 $updateDataBarang->update();
 
                 return response()->json([
@@ -230,8 +232,10 @@ class barangController extends Controller
                 <i class="fa fa-trash-o fa-sm text-white-50"></i>&nbsp;Hapus</button>
                 </div>';
             })
-            ->rawColumns(['actions'])
-            
+            ->addColumn('penjualan', function ($row) {
+                return $row->kategori_penjualan->kategori_penjualan;
+            })
+            ->rawColumns(['actions'])            
             ->make(true);
     }
 }

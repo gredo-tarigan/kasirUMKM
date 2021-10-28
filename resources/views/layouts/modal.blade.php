@@ -30,9 +30,10 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
     </div>
 </div>
 
-<div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        @yield('modal_content_hapus')
+<div class="modal fade" id="modalSettingAkun" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        @yield('modal_content_settingAkun')
     </div>
 </div>
 
@@ -51,5 +52,27 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalTabel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        @yield('modal_content_tabel')
+</div>
+
+<div class="modal fade" id="modalEdit2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+        @yield('modal_content2')
+</div>
+
+<div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        @yield('modal_content_hapus')
+    </div>
+</div>
+
+<div class="modal fade" id="modalHapus2" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        @yield('modal_content_hapus2')
     </div>
 </div>

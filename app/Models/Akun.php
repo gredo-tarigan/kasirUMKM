@@ -12,4 +12,9 @@ class Akun extends \Illuminate\Foundation\Auth\User
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function kategori_akun()
+    {
+        return $this->belongsTo(kategoriAkun::class, 'kategori_akun_id');
+    }
 }

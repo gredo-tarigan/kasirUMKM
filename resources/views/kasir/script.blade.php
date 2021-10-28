@@ -105,7 +105,7 @@
              // Fitur keren Datatable menampilkan 2 kolom database dalam 1 kolom tabel
              function getMassaPiecesdanKategoriPenjualan(data, type, dataToSet) {
                  //return data.massa_pieces + "" + data.kategori_penjualan_id;
-                 return bulatin(data.massa_pieces, 1) + " " + data.percobaan; //dari kontroller
+                 return bulatin(data.massa_pieces, 2) + " " + data.percobaan; //dari kontroller
              }
 
 
@@ -219,9 +219,10 @@
 
 
              // Click Tombol Harga Helper
-             $(".yoman").on("click", function() {
+             $(".yoman").on("click", function(e) {
+                e.preventDefault();
                  console.log("aw");
-                 var x = $(".yoman").val();
+                 var x = $(this).data('val')
                  $("#input_perhitungan").val(x);
              });
 

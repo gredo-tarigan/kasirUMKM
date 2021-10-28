@@ -18,9 +18,9 @@ class CreateAkunsTable extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->string('nama');
-            $table->integer('noHp');
+            $table->string('noHp');
             $table->string('alamat');
-            $table->integer('tipe');
+            $table->integer('kategori_akun_id');
             $table->string('remember_token')->nullable();
 
             $table->timestamps();

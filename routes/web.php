@@ -51,9 +51,6 @@ Route::post('/logout', [loginController::class, 'logout']);
 
 Route::group(['middleware' => ['auth', 'cekLevelAkun:1, 2']], function(){
     Route::get('cashier', [kasirController::class, 'kasir']);
-    Route::get('goods', [barangController::class, 'barang',]);
-    Route::get('/sales', [penjualanController::class, 'penjualan']);
-    //Route::get('/expenses', [pengeluaranController::class, 'pengeluaran']);
     Route::get('/dashboard', [dashboardController::class, 'index']);
 
 });
@@ -61,8 +58,9 @@ Route::group(['middleware' => ['auth', 'cekLevelAkun:1, 2']], function(){
 Route::group(['middleware'=> ['auth', 'cekLevelAkun:2']], function(){
     Route::get('account', [akunController::class, 'index']);
     Route::get('/expenses', [pengeluaranController::class, 'pengeluaran']);
+    Route::get('goods', [barangController::class, 'barang',]);
+    Route::get('/sales', [penjualanController::class, 'penjualan']);
 });
-
 
 // Route::get('cashier', [kasirController::class, 'kasir'])->middleware('auth', 'cekLevelAkun:1, 2');
 Route::post('/cashier-id_nota', [kasirController::class, 'passIdNota']);
@@ -78,7 +76,14 @@ Route::delete('delete-dataTempPenjualan/{id}', [kasirController::class, 'destroy
 Route::post('account', [akunController::class, 'store']);
 Route::get('/get-dataAkun', [akunController::class, 'getAkunList'])->name('get.akun.list');
 Route::get('edit-dataAkun/{id}', [akunController::class, 'edit']);
+
+Route::get('edit-dataSettingsAkun/{id}', [akunController::class, 'editSettingsAkun']);
+
 Route::put('update-dataAkun/{id}', [akunController::class, 'update']);
+Route::put('update-dataPasswordAkun/{id}', [akunController::class, 'updatePassword']);
+
+Route::put('/update-dataPasswordSettingAkun/{id}', [akunController::class, 'updateSettingPassword']);
+
 Route::delete('delete-dataAkun/{id}', [akunController::class, 'destroy']);
 
 
@@ -99,12 +104,30 @@ Route::get('/get-dataBarang', [barangController::class, 'getCountriesList'])->na
 
 // Route::get('/sales', [penjualanController::class, 'penjualan'])->middleware('auth');
 Route::get('/get-dataPenjualan', [penjualanController::class, 'getPenjualanList'])->name('get.penjualan.list');
-Route::get('edit-dataPenjualan/{id}', [penjualanController::class, 'edit'])->name('yombex.list');
+
+Route::get('/get-dataLaporanPenjualan', [penjualanController::class, 'getLaporanPenjualanList'])->name('get.laporanPenjualan.list');
+
+Route::get('get-detailPenjualan/{id}', [penjualanController::class, 'getDetailPenjualanTabel']);
+Route::get('get-detailPenjualanNota/{id}', [penjualanController::class, 'getDetailPenjualan']);
 
 
 // Route::get('/expenses', [pengeluaranController::class, 'pengeluaran'])->middleware('auth');
 Route::get('/get-dataPengeluaran', [pengeluaranController::class, 'getPengeluaranList'])->name('get.pengeluaran.list');
+Route::get('/get-LaporanPengeluaran', [pengeluaranController::class, 'getPengeluaranLaporan'])->name('get.pengeluaran.laporan');
+Route::get('/get-jenisLaporanTabel', [pengeluaranController::class, 'getJenisPengeluaranTabel'])->name('get.jenisPengeluaran.tabel');
 Route::delete('delete-dataPengeluaran/{id}', [pengeluaranController::class, 'destroy']);
+
+Route::delete('delete-jenisPengeluaran/{id}', [pengeluaranController::class, 'destroy_jenisPengeluaran']);
 Route::post('expenses', [pengeluaranController::class, 'store',]);
+
+Route::post('expensesJenisPengeluaran', [pengeluaranController::class, 'storeJenisPengeluaran',]);
+
+Route::get('edit-jenisPengeluaran/{id}', [pengeluaranController::class, 'editJenisPengeluaran']);
+
 Route::get('edit-dataPengeluaran/{id}', [pengeluaranController::class, 'edit']);
 Route::put('update-dataPengeluaran/{id}', [pengeluaranController::class, 'update']);
+
+Route::put('update-jenisPengeluaran/{id}', [pengeluaranController::class, 'updateJenisPengeluaran']);
+
+Route::post('dashboard/fetch_data', [penjualanController::class, 'fetchDataChart']);
+Route::get('/dashboard/chart/{filter}', [dashboardController::class, 'filterChartDashboard']);

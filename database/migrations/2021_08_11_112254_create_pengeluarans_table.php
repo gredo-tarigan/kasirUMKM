@@ -15,7 +15,7 @@ class CreatePengeluaransTable extends Migration
     {
         Schema::create('pengeluarans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('nama_pengeluaran');
             $table->foreignId('kategori_pengeluaran_id');
             $table->integer('nominal');
             $table->string('keterangan');

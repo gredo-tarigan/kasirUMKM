@@ -48,18 +48,28 @@
                 </div>
                 <div class="row">
                     <div class="col-lg">
-                        <div class="mb-3"><label class="form-label" for="city"><strong>Kategori
+                        {{-- <div class="mb-3"><label class="form-label" for="city"><strong>Kategori
                                     Barang</strong></label>
                             <input class="form-control" placeholder="" type="text" id="add_kategoriBarang" name="">
-                        </div>
+                        </div> --}}
                     </div>
-                    <div class="col-lg">
+                    {{-- <div class="col-lg">
                         <div class="mb-3"><label class="form-label" for="city"><strong>Penjualan
                                     Barang</strong></label>
                             <select class="custom-select" id="add_kategoriPenjualan">
                                 <option selected>Choose...</option>
                                 <option value="1">per Pieces</option>
                                 <option value="2">Eceran</option>
+                            </select>
+                        </div>
+                    </div> --}}
+                    <div class="col-lg">
+                        <div class="mb-3"><label class="form-label" for="country"><strong>
+                                    Kategori Penjualan</strong></label>
+                            <select class="form-select" aria-label="Default select example" id="edit_kategori_penjualan">
+                                @foreach ($kategori_penjualan as $item)
+                                    <option value="{{ $item->id }}">{{ $item->kategori_penjualan }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -121,20 +131,30 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg">
+                    {{-- <div class="col-lg">
                         <div class="mb-3"><label class="form-label" for="city"><strong>Kategori
                                     Barang</strong></label>
                             <input class="form-control" placeholder="" type="" id="add_kategori_barang"
                                 name="add_kategori_barang">
                         </div>
-                    </div>
-                    <div class="col-lg">
+                    </div> --}}
+                    {{-- <div class="col-lg">
                         <div class="mb-3"><label class="form-label" for="city"><strong>Penjualan
                                     Barang</strong></label>
                             <select class="custom-select" id="add_kategori_penjualan">
                                 <option selected>Choose...</option>
                                 <option value="1">Eceran</option>
                                 <option value="2">Per Pieces</option>
+                            </select>
+                        </div>
+                    </div> --}}
+                    <div class="col-lg">
+                        <div class="mb-3"><label class="form-label" for="country"><strong>
+                                    Kategori Penjualan</strong></label>
+                            <select class="form-select" aria-label="Default select example" id="add_kategori_penjualan">
+                                @foreach ($kategori_penjualan as $item)
+                                    <option value="{{ $item->id }}">{{ $item->kategori_penjualan }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
