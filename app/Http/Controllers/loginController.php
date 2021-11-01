@@ -22,7 +22,7 @@ class loginController extends Controller
         ]);
 
         if(Auth::attempt($credentials)) {
-            $request->session()->regenerate(); // regenerate baut menghindari teknik hacking fixation
+            $request->session()->regenerate(); // regenerate buat menghindari teknik hacking fixation
 
             return redirect()->intended('/cashier');
         }
