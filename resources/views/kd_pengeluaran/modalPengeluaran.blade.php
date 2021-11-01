@@ -108,7 +108,7 @@
 
                 </div>
                 <div class="mb-3"><label class="form-label" for="city"><strong>Keterangan
-                        </strong></label><textarea class="form-control" placeholder="(Boleh Kosong)" type="text"
+                        </strong></label><textarea class="form-control" placeholder="" type="text"
                         id="add_kp" name="city"></textarea>
                 </div>
             </form>
