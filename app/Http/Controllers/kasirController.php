@@ -29,9 +29,10 @@ class kasirController extends Controller
         ]);
     }
 
-    public function passNoNota(){
+    public function passNoNota()
+    {
         $carbon_today = Carbon::today()->isoFormat('DMMYY');
-        $a = nota::whereDate('created_at', Carbon::today());       
+        $a = nota::whereDate('created_at', Carbon::today());
         $b = $a->count() + 1;
         $nota_hari_ini = str_pad($b, 3, '0', STR_PAD_LEFT);
         return response()->json([
@@ -76,16 +77,20 @@ class kasirController extends Controller
     public function store(Request $request)
     {
         //
-        $validator = Validator::make($request->all(), [
-            'add_idBarang' => 'required|numeric',
-            'add_hargaJadi' => 'required|numeric', //make nama tabel bukan nama model //validasi unique
-            'add_massaPieces' => 'required_with:db_massaPieces|numeric|lte:db_massaPieces',
-            'add_penjualanId' => 'required|numeric',
-            'add_akunId' => 'required|numeric',
-            'add_subTotal' => 'required|numeric',
-            'add_notaId' => 'required|numeric',
-            'db_massaPieces' => 'required|numeric'
-        ]);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'add_idBarang' => 'required|numeric',
+                'add_hargaJadi' => 'required|numeric', //make nama tabel bukan nama model //validasi unique
+                'add_massaPieces' => 'required_with:db_massaPieces|numeric|lte:db_massaPieces',
+                'add_penjualanId' => 'required|numeric',
+                'add_akunId' => 'required|numeric',
+                'add_subTotal' => 'required|numeric',
+                'add_notaId' => 'required|numeric',
+                'db_massaPieces' => 'required|numeric'
+            ],
+            ['add_massaPieces.lte' => 'Out of Stock']
+        );
 
         if ($validator->fails()) {
             return response()->json([
@@ -105,7 +110,7 @@ class kasirController extends Controller
             $query = $addDataTempPenjualan->save();
 
             DB::table('barangs')->where('id', $request->input('add_idBarang'))->decrement('stok', $request->input('add_massaPieces'));
-            
+
             if (!$query) {
 
 
@@ -161,7 +166,7 @@ class kasirController extends Controller
         //
         $deleteDataTempPenjualan = tempPenjualan::find($id);
         $deleteDataTempPenjualan->delete();
-        
+
         DB::table('barangs')->where('id', $deleteDataTempPenjualan->barang_id)->increment('stok', $deleteDataTempPenjualan->massa_pieces);
 
         return response()->json([

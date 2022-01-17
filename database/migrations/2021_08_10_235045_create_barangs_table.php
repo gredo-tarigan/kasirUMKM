@@ -23,6 +23,7 @@ class CreateBarangsTable extends Migration
             $table->integer('harga_masuk');
             $table->integer('harga_jual');
             $table->decimal('stok');
+            $table->decimal('stok_awal');
 
             $table->timestamps();
         });

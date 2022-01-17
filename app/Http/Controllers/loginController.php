@@ -24,7 +24,7 @@ class loginController extends Controller
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate(); // regenerate buat menghindari teknik hacking fixation
 
-            return redirect()->intended('/cashier');
+            return redirect()->intended('/dashboard');
         }
 
         return back()->with('loginError', 'Login Failed!');

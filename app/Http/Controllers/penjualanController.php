@@ -89,7 +89,7 @@ class penjualanController extends Controller
     public function getPenjualanList()
     {
         $countries = nota::with('relasi_tempPenjualan.barang', 'relasi_tempPenjualan.kategori_penjualan');
-        $countriess = nota::all();
+        //$countriess = nota::all();
         return DataTables::of($countries)
             ->addIndexColumn()
             /*  ->addColumn('actions', function ($row) {

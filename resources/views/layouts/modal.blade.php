@@ -65,6 +65,27 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
         @yield('modal_content2')
 </div>
 
+<div class="modal fade" id="modalOpname" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        @yield('modal_content_opname')
+    </div>
+</div>
+
+<div class="modal fade" id="modalOpnameEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        @yield('modal_content_opnameEdit')
+    </div>
+</div>
+
+<div class="modal fade" id="modalOpnameHapus" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        @yield('modal_content_opnameHapus')
+    </div>
+</div>
+
 <div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         @yield('modal_content_hapus')

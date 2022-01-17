@@ -19,6 +19,7 @@
 
              //
              passIdNota();
+
              function passIdNota() {
                  $.ajaxSetup({
                      headers: {
@@ -103,6 +104,7 @@
                      success: function(response) {
                          //console.log(response.errors);
                          if (response.status == 400) {
+                             $('#saveform_errList').show();
                              $('#saveform_errList').html("");
                              $('#saveform_errList').addClass('alert alert-danger');
                              $.each(response.errors, function(key, err_values) {
@@ -110,6 +112,9 @@
                                      err_values +
                                      '</li>');
                              });
+                             setTimeout(function() {
+                                 $('#saveform_errList').fadeOut('fast');
+                             }, 1000);
 
                          } else {
                              /*  $('#modalTambah').modal('hide');

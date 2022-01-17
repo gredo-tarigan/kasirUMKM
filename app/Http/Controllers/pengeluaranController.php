@@ -47,7 +47,13 @@ class pengeluaranController extends Controller
                  return $row->nominal; // human readable format
              })
              ->editColumn('kategori_pengeluaran_id', function ($row) {
-                 return $row->kategori_pengeluaran->kategori_pengeluaran;
+                // Penerapan Normalisasi untuk mencegah deletion anomaly
+                if (!empty($row->kategori_pengeluaran->kategori_pengeluaran)) {
+                    return $row->kategori_pengeluaran->kategori_pengeluaran;
+                } else {
+                    return $row->kategori_pengeluaran;
+                }
+                //  return $row->kategori_pengeluaran->kategori_pengeluaran;
              })
             ->make(true);
     }
@@ -83,7 +89,13 @@ class pengeluaranController extends Controller
                  return $row->total_click; // human readable format
              })
              ->editColumn('kategoriPengeluaran', function ($row) {
-                 return $row->kategori_pengeluaran->kategori_pengeluaran;
+                  // Penerapan Normalisasi untuk mencegah deletion anomaly
+                if (!empty($row->kategori_pengeluaran->kategori_pengeluaran)) {
+                    return $row->kategori_pengeluaran->kategori_pengeluaran;
+                } else {
+                    return $row->kategori_pengeluaran;
+                }
+                //  return $row->kategori_pengeluaran->kategori_pengeluaran;
              })
             ->make(true);
     }

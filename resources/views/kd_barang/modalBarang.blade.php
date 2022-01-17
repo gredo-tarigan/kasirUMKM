@@ -190,3 +190,227 @@
         </div>
     </div>
 @endsection
+
+@section('modal_content_opname')
+    <div class="modal-content">
+        <div class="modal-header card-header py-3">
+            <p class="text-primary m-0 fw-bold">Konfirmasi Penambahan Data Opname</p>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="delete_DB_id">
+            <ul id="saveform_errListOpname"></ul>
+            <text>Sistem Akan Menambahkan Data Opname Sebagai Berikut:</text></br>
+            <form>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="mb-3"><label class="form-label" for="city"><strong>Nama
+                                    Barang</strong></label><input class="form-control" placeholder="" type="text"
+                                id="NamaBarangModal" name="NamaBarangModal" disabled>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3"><label class="form-label" for="country"><strong>
+                                    Periode</strong></label><input class="form-control text-center" type="text"
+                                id="PeriodeBarangModal" placeholder="" name="PeriodeBarangModal" disabled>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row mb-3">
+
+                    <div class="col-lg-auto"><label class="form-label" for="city"><strong>Stok
+                                Fisik</strong></label>
+                    </div>
+                    <div class="col-lg input-group">
+
+                        <input class="form-control text-center" placeholder="" type="number" id="StokFisikModal" name=""
+                            disabled>
+
+                        <input class="form-control input-group-append col-lg-4 kategori_penjualan_class" placeholder=""
+                            type="text" id="StokFisikModal" style="text-align: center;" disabled>
+                    </div>
+
+                    <div class="col-lg-auto"><label class="form-label" for="city"><strong>Stok
+                                Masuk</strong></label>
+                    </div>
+                    <div class="col-lg input-group">
+
+                        <input class="form-control text-center" placeholder="" type="number" id="StokMasukModal"
+                            name="StokMasukModal" disabled>
+
+                        <input class="form-control input-group-append col-lg-4 kategori_penjualan_class" placeholder=""
+                            type="text" id="" style="text-align: center;" disabled>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-auto"><label class="form-label" for="city"><strong>Keterangan</strong></label>
+                    </div>
+                    <div class="col">
+                        <input class="form-control" type="text" id="KeteranganModal">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="FormCheckSimpanStok" checked>
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Perbaharui Data Stok Sistem dan Stok Awal Barang
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-bs-target="" data-bs-toggle="" data-bs-dismiss=""
+                id="TambahkanOpnameModal">Tambahkan</button>
+        </div>
+    </div>
+@endsection
+
+@section('modal_content_opnameEdit')
+    <div class="modal-content">
+        <div class="modal-header card-header py-3">
+            <p class="text-primary m-0 fw-bold">Edit Data Opname</p>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="EditOpname_DB_id">
+            <form>
+                <ul id="saveform_errList"></ul>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="mb-3"><label class="form-label" for="city"><strong>Nama
+                                    Barang</strong></label>
+                            <input class="form-control" placeholder="" type="text" id="NamaBarangModalEditOpname"
+                                name="NamaBarangModalEditOpname" disabled>
+                            <input class="form-control" placeholder="" type="text" id="IdBarangModalEditOpname"
+                                name="IdBarangModalEditOpname" disabled hidden>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3"><label class="form-label" for="country"><strong>
+                                    Periode</strong></label><input class="form-control text-center" type="text"
+                                id="PeriodeBarangModalEditOpname" placeholder="" name="PeriodeBarangModalEditOpname"
+                                disabled>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row mb-3">
+
+                    <div class="col-lg-auto"><label class="form-label" for="city"><strong>Stok
+                                Fisik</strong></label>
+                    </div>
+                    <div class="col-lg input-group">
+
+                        <input class="form-control text-center" placeholder="" type="number" id="EditStokFisikModal"
+                            name="">
+
+                        <input class="form-control input-group-append col-lg-4 kategori_penjualan_classEdit" placeholder=""
+                            type="text" id="StokFisikModalEditOpname" style="text-align: center;" disabled>
+                    </div>
+
+                    <div class="col-lg-auto"><label class="form-label" for="city"><strong>Stok
+                                Masuk</strong></label>
+                    </div>
+                    <div class="col-lg input-group">
+
+                        <input class="form-control text-center" placeholder="" type="number"
+                            id="EditStokMasukModalEditOpname" name="StokMasukModalEditOpname">
+
+                        <input class="form-control input-group-append col-lg-4 kategori_penjualan_classEdit" placeholder=""
+                            type="text" id="" style="text-align: center;" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-2">
+                        <div class="form-check form-switch toggle-text OpnameManualStok">
+                            <input class="form-check-input" type="checkbox" id="Mode_StokEditManual">
+                            <div> <label class="form-check-label" for="flexCheckChecked">
+                                    Ubah Data Stok dan Stok Awal
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+
+                    <div class="col-lg-auto"><label class="form-label" for="city"><strong>Stok
+                                Awal</strong></label>
+                    </div>
+                    <div class="col-lg input-group">
+
+                        <input class="form-control text-center" placeholder="" type="number"
+                            id="EditStokAwalModalEditOpname" name="" disabled>
+
+                        <input class="form-control input-group-append col-lg-4 kategori_penjualan_classEdit" placeholder=""
+                            type="text" id="StokFisikModal" style="text-align: center;" disabled>
+                    </div>
+
+                    <div class="col-lg-auto"><label class="form-label" for="city"><strong>Stok
+                                Sistem</strong></label>
+                    </div>
+                    <div class="col-lg input-group">
+
+                        <input class="form-control text-center" placeholder="" type="number"
+                            id="EditStokSistemModalEditOpname" name="EditStokSistemModal" disabled>
+
+                        <input class="form-control input-group-append col-lg-4 kategori_penjualan_classEdit" placeholder=""
+                            type="text" id="" style="text-align: center;" disabled>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="FormCheckPerbaharuiStok">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Perbaharui Data Stok dan Stok Awal Barang Ke Dalam Sistem
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-bs-target="" data-bs-toggle="" data-bs-dismiss=""
+                id="EditOpnameModal">Update Data</button>
+        </div>
+    </div>
+@endsection
+
+@section('modal_content_opnameHapus')
+    <div class="modal-content">
+        <div class="modal-header card-header py-3">
+            <p class="text-primary m-0 fw-bold">Hapus Data Opname</p>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="HapusOpname_DB_id">
+            <form>
+                <input class="form-control text-center" placeholder="" type="number" id="DeleteStokAwalModalEditOpname"
+                    name="" hidden>
+                <input class="form-control text-center" placeholder="" type="number" id="DeleteStokSistemModalEditOpname"
+                    name="" hidden>
+                <input class="form-control text-center" placeholder="" type="number" id="IdBarangStokSistemModalEditOpname"
+                    name="" hidden>
+                <text>Apakah Anda Yakin Untuk Menghapus Data Opname Ini?</text>
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="FormCheckReverseStok">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Reverse Data Stok dan Stok Awal Barang Ke Dalam Sistem
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-bs-target="" data-bs-toggle="" data-bs-dismiss=""
+                id="DeleteOpnameModal">Delete Data</button>
+        </div>
+    </div>
+@endsection

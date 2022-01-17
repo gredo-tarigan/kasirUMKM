@@ -52,13 +52,12 @@ Route::post('/logout', [loginController::class, 'logout']);
 Route::group(['middleware' => ['auth', 'cekLevelAkun:1, 2']], function(){
     Route::get('cashier', [kasirController::class, 'kasir']);
     Route::get('/dashboard', [dashboardController::class, 'index']);
-
+    Route::get('goods', [barangController::class, 'barang',])->name('get.barang');
 });
 
 Route::group(['middleware'=> ['auth', 'cekLevelAkun:2']], function(){
     Route::get('account', [akunController::class, 'index']);
     Route::get('/expenses', [pengeluaranController::class, 'pengeluaran']);
-    Route::get('goods', [barangController::class, 'barang',]);
     Route::get('/sales', [penjualanController::class, 'penjualan']);
 });
 
@@ -97,6 +96,17 @@ Route::put('update-dataBarang/{id}', [barangController::class, 'update']);
 Route::delete('delete-dataBarang/{id}', [barangController::class, 'destroy']);
 
 Route::get('/get-dataBarang', [barangController::class, 'getCountriesList'])->name('get.countries.list');
+Route::get('/get-dataStockOpname', [barangController::class, 'getTabelStockOpname'])->name('get.tabelstockopname.list');
+Route::put('update-stockBarangOpname/{id}', [barangController::class, 'updateStockBarangOpname']);
+
+Route::resource('kd_barang', 'barangController');
+
+Route::post('/post-dataStockOpname', [barangController::class, 'postDataStockOpname']);
+
+Route::get('edit-DataOpname/{id}', [barangController::class, 'editDataOpname']);
+Route::put('update-DataOpname/{id}', [barangController::class, 'updateDataOpname']);
+Route::put('update-EditStockBarangOpname/{id}', [barangController::class, 'updateEditStockBarangOpname']);
+Route::delete('delete-DataOpnameDelete/{id}', [barangController::class, 'HapusDataOpname']);
 
 
 // Route::get('goods/edit/{barang_slug:slug}', [barangController::class, 'editDataBarang']);
@@ -109,7 +119,6 @@ Route::get('/get-dataLaporanPenjualan', [penjualanController::class, 'getLaporan
 
 Route::get('get-detailPenjualan/{id}', [penjualanController::class, 'getDetailPenjualanTabel']);
 Route::get('get-detailPenjualanNota/{id}', [penjualanController::class, 'getDetailPenjualan']);
-
 
 // Route::get('/expenses', [pengeluaranController::class, 'pengeluaran'])->middleware('auth');
 Route::get('/get-dataPengeluaran', [pengeluaranController::class, 'getPengeluaranList'])->name('get.pengeluaran.list');

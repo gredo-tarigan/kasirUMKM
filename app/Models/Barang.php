@@ -26,4 +26,9 @@ class Barang extends Model
     {
         return $this->hasMany('App\Models\tempPenjualan'::class);
     }
+    
+    public function relasi_stockOpname()
+    {
+        return $this->hasMany('App\Models\StockOpname'::class);
+    }
 }

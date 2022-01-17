@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{{ asset('/assets/fonts/fontawesome-all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/fonts/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/fonts/fontawesome5-overrides.min.css') }}">
-
 </head>
 
 <body id="page-top">
@@ -50,7 +49,7 @@
                                 href="/account"><i class="far fa-user-circle"></i><span>Kelola
                                     Akun{{ $title === 'Edit Data Akun' ? ' > Edit' : '' }}</span></a></li>
                     @endif
-                    @if (auth()->user()->kategori_akun_id == 2)
+                    @if (auth()->user()->kategori_akun_id == 1 || 2)
                     <li class="nav-item"><a
                             class="nav-link {{ $title === 'Kelola Data Barang' ? 'active' : ($title === 'Edit Data Barang' ? 'active' : '') }}"
                             href="/goods">

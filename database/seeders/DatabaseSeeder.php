@@ -7,6 +7,7 @@ use App\Models\Barang;
 use App\Models\kategoriAkun;
 use App\Models\kategoriPengeluaran;
 use App\Models\kategoriPenjualan;
+use App\Models\StockOpname;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -229,6 +230,26 @@ class DatabaseSeeder extends Seeder
             'supplier' => 'Matias',
             'keterangan' => 'Kontan',
             'kategori_penjualan_id' => '1',
+        ]);
+
+        StockOpname::create([
+            'stok_awal' => '100',
+            'stok_sistem' => '100',
+            'stok_fisik' => '100',
+            'stok_masuk' => '100',
+            'stok_keluar' => '100',
+            'barang_id' => '1',
+            'opname_date' => '2021-11-04',
+        ]);
+
+        StockOpname::create([
+            'stok_awal' => '200',
+            'stok_sistem' => '200',
+            'stok_fisik' => '200',
+            'stok_masuk' => '200',
+            'stok_keluar' => '200',
+            'barang_id' => '3',
+            'opname_date' => '2021-11-05',
         ]);
     }
 }

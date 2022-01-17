@@ -319,6 +319,7 @@
              var table = $('#tabelLaporanPenjualan').DataTable({
                  processing: true,
                  info: true,
+                 searching: false,
                  ajax: "{{ route('get.laporanPenjualan.list') }}",
                  buttons: [{
                          text: 'csv',
@@ -392,6 +393,7 @@
                  let tabelPengeluaranLaporan = $('#tabelLaporanPenjualan').DataTable();
                  tabelPengeluaranLaporan.button('.buttons-print').trigger();
              });
+
          });
      </script>
      <!-- END -->
